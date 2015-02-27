@@ -53,6 +53,7 @@ class ReCaptchaValidator extends Validator
                 return;
             }
         } catch (Exception $e) {
+            // do nothing
         }
         $this->addError($model, $attribute, $this->message);
     }
