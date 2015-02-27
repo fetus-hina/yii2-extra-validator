@@ -28,7 +28,7 @@ class TwitterAccountValidator extends Validator
         }
         if (!is_array($this->nonUsernamePaths)) {
             $this->nonUsernamePaths = [
-                "about",  "account",  "accounts", "activity", "all", "announcements", "anywhere", "api_rules",
+                "about", "account", "accounts", "activity", "all", "announcements", "anywhere", "api_rules",
                 "api_terms", "apirules", "apps", "auth", "badges", "blog", "business", "buttons", "contacts",
                 "devices", "direct_messages", "download", "downloads", "edit_announcements", "faq", "favorites",
                 "find_sources", "find_users", "followers", "following", "friend_request", "friendrequest", "friends",
