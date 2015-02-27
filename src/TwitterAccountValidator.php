@@ -55,13 +55,10 @@ class TwitterAccountValidator extends Validator
     /** @inheritdoc */
     protected function validateValue($value)
     {
-        {
         $value = strtolower((string)$value);
         if (!preg_match('/^[a-z0-9_]{1,15}$/', $value) || in_array($value, $this->nonUsernamePaths, true)) {
             return [$this->message, []];
-            $this->addError($model, $attribute, $this->message);
         }
         return null;
-        }
     }
 }
