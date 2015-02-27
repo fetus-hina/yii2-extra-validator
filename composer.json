@@ -1,0 +1,31 @@
+{
+    "name": "jp3cki/yii2-extra-validator",
+    "type": "yii2-extension",
+    "description": "Validators for Yii2",
+    "keywords": ["yii2", "validator"],
+    "license": "MIT",
+    "version": "0.0.1-alpha1",
+    "authors": [
+        {
+            "name": "AIZAWA Hina",
+            "email": "hina@bouhime.com"
+        }
+    ],
+    "require": {
+        "php":  ">=5.4.0",
+        "ext-pcre": "*",
+        "php-curl-class/php-curl-class": "~2.1",
+        "yiisoft/yii2": "~2.0"
+    },
+    "require-dev": {
+        "codeclimate/php-test-reporter": "dev-master",
+        "phpunit/phpunit": "4.*",
+        "squizlabs/php_codesniffer": "2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "jp3cki\\yii2\\validators\\": "src",
+            "jp3cki\\yii2\\validators\\testsrc\\": "test/src"
+        }
+    }
+}
