@@ -1,6 +1,11 @@
 yii2-extra-validator
 ====================
 
+[![Build Status](https://travis-ci.org/fetus-hina/yii2-extra-validator.svg?branch=master)](https://travis-ci.org/fetus-hina/yii2-extra-validator)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fetus-hina/yii2-extra-validator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fetus-hina/yii2-extra-validator/?branch=master)
+[![Code Climate](https://codeclimate.com/github/fetus-hina/yii2-extra-validator/badges/gpa.svg)](https://codeclimate.com/github/fetus-hina/yii2-extra-validator)
+[![Test Coverage](https://codeclimate.com/github/fetus-hina/yii2-extra-validator/badges/coverage.svg)](https://codeclimate.com/github/fetus-hina/yii2-extra-validator)
+
 Requirements
 ------------
 
