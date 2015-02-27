@@ -28,7 +28,6 @@ class ReCaptchaValidator extends Validator
         parent::init();
         if ($this->message === null) {
             $this->message = Yii::t('yii', 'Please comfirm the reCAPTCHA.');
-            $this->message = 'reCAPTCHAの認証を行ってください';
         }
         if ($this->userAgent === null) {
             $this->userAgent = $this->createDefaultUserAgentString();
@@ -60,11 +59,12 @@ class ReCaptchaValidator extends Validator
 
     private function createDefaultUserAgentString()
     {
+        $curlVersion = curl_version();
         $parts = [];
         $parts[] = 'ReCaptchaValidator(+http://bit.ly/18571qW)';
         $parts[] = 'PHP-Curl-Class/' . Curl::VERSION;
         $parts[] = 'PHP/' . PHP_VERSION;
-        $parts[] = 'curl/' . curl_version();
+        $parts[] = 'curl/' . $curlVersion['version'];
         return implode(' ', $parts);
     }
 }
