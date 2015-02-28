@@ -30,7 +30,7 @@ class ReCaptchaValidator extends Validator
     {
         parent::init();
         if ($this->message === null) {
-            $this->message = Yii::t('yii', 'Please comfirm the reCAPTCHA.');
+            $this->message = Yii::t('jp3ckivalidator', 'Please comfirm the reCAPTCHA.');
         }
         if ($this->userAgent === null) {
             $this->userAgent = $this->createDefaultUserAgentString();

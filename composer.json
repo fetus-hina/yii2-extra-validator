@@ -27,5 +27,8 @@
             "jp3cki\\yii2\\validators\\": "src",
             "jp3cki\\yii2\\validators\\testsrc\\": "test/src"
         }
+    },
+    "extra": {
+        "bootstrap": "jp3cki\\yii2\\validators\\internal\\Bootstrap"
     }
 }

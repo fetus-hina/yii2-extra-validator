@@ -1,6 +1,7 @@
 <?php
 namespace jp3cki\yii2\validators\test;
 
+use Yii;
 use jp3cki\yii2\validators\TwitterAccountValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 use jp3cki\yii2\validators\testsrc\models\ModelForTwitterAccountValidator as TestModel;
@@ -50,22 +51,59 @@ class TwitterAccountValidatorTest extends TestCase
     /**
      * @dataProvider screenNamesProvider
      */
-    public function testValidate($expect, $screen_name)
+    public function testValidate($expect, $screenName)
     {
         $o = new Target();
         $o->init();
-        $this->assertEquals($expect, $o->validate($screen_name));
+        $error = null;
+        $this->assertEquals($expect, $o->validate($screenName, $error));
+        if ($expect === false) {
+            $this->assertRegExp('/^[\x20-\x7e]+$/', $error);
+        }
     }
 
     /**
      * @dataProvider screenNamesProvider
      */
-    public function testValidateAttribute($expect, $screen_name)
+    public function testValidateJa($expect, $screenName)
+    {
+        Yii::$app->language = 'ja-JP';
+        $o = new Target();
+        $o->init();
+        $error = null;
+        $this->assertEquals($expect, $o->validate($screenName, $error));
+        if ($expect === false) {
+            $this->assertRegExp('/[ぁ-ゟ゠-ヿ]/u', $error); // ひらがな・カタカナを含む
+        }
+    }
+
+    /**
+     * @dataProvider screenNamesProvider
+     */
+    public function testValidateAttribute($expect, $screenName)
     {
         $o = new TestModel();
         $o->init();
-        $o->value = $screen_name;
+        $o->value = $screenName;
         $this->assertEquals($expect, $o->validate());
+        if ($expect === false) {
+            $this->assertRegExp('/^[\x20-\x7e]+$/', $o->errors['value'][0]);
+        }
+    }
+
+    /**
+     * @dataProvider screenNamesProvider
+     */
+    public function testValidateAttributeJa($expect, $screenName)
+    {
+        Yii::$app->language = 'ja-JP';
+        $o = new TestModel();
+        $o->init();
+        $o->value = $screenName;
+        $this->assertEquals($expect, $o->validate());
+        if ($expect === false) {
+            $this->assertRegExp('/[ぁ-ゟ゠-ヿ]/u', $o->errors['value'][0]); // ひらがな・カタカナを含む
+        }
     }
 
     public function screenNamesProvider()

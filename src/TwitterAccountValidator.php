@@ -24,7 +24,7 @@ class TwitterAccountValidator extends Validator
     {
         parent::init();
         if ($this->message === null) {
-            $this->message = Yii::t('yii', '{attribute} is not a valid twitter account name.');
+            $this->message = Yii::t('jp3ckivalidator', '{attribute} is not a valid twitter account name.');
         }
         if (!is_array($this->nonUsernamePaths)) {
             $this->nonUsernamePaths = [
