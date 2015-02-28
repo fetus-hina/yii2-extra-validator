@@ -46,6 +46,8 @@ class ReCaptchaValidatorTest extends TestCase
         $o->scenario = 'failureTest';
         $o->value = 'TEST';
         $this->assertFalse($o->validate());
+        $this->assertGreaterThan(0, count($o->errors['value']));
+        $this->assertNotEmpty($o->errors['value']);
     }
 
     public function testNetworkFailure()
@@ -55,5 +57,7 @@ class ReCaptchaValidatorTest extends TestCase
         $o->scenario = 'networkFailureTest';
         $o->value = 'TEST';
         $this->assertFalse($o->validate());
+        $this->assertGreaterThan(0, count($o->errors['value']));
+        $this->assertNotEmpty($o->errors['value']);
     }
 }

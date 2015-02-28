@@ -23,6 +23,9 @@ class ReCaptchaValidator extends Validator
     public $remoteIp;
     public $userAgent;
 
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         parent::init();
@@ -34,6 +37,9 @@ class ReCaptchaValidator extends Validator
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function validateAttribute($model, $attribute)
     {
         $params = [
@@ -43,18 +49,24 @@ class ReCaptchaValidator extends Validator
         if ($this->remoteIp) {
             $params['remoteip'] = (string)$this->remoteIp;
         }
-        $url = $this->endPoint;
+        if (!$this->verify($params)) {
+            $this->addError($model, $attribute, $this->message);
+        }
+    }
+
+    private function verify(array $params)
+    {
         try {
             $curl = new Curl();
             $curl->setUserAgent($this->userAgent);
-            $ret = $curl->post($url, $params);
+            $ret = $curl->post($this->endPoint, $params);
             if (($ret instanceof stdClass) && isset($ret->success) && $ret->success === true) {
-                return;
+                return true;
             }
         } catch (Exception $e) {
             // do nothing
         }
-        $this->addError($model, $attribute, $this->message);
+        return false;
     }
 
     private function createDefaultUserAgentString()
