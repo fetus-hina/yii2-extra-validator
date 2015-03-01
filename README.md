@@ -24,6 +24,13 @@ Install
 Usage
 -----
 
+This package includes these validators:
+- [IdnToPunycodeFilterValidator](#idntopunycodefiltervalidator)
+- [ReCaptchaValidator](#recaptchavalidator)
+- [StrictUrlValidator](#stricturlvalidator)
+- [TwitterAccountValidator](#twitteraccountvalidator)
+
+
 ### IdnToPunycodeFilterValidator ###
 
 `IdnToPunycodeFilterValidator` is a filter validator that provides convert IDN to Punycoded domain name.
@@ -36,6 +43,7 @@ namespace app\models;
 
 use yii\base\Model;
 use jp3cki\yii2\validators\IdnToPunycodeFilterValidator;
+// use jp3cki\yii2\validators\StrictUrlValidator;
 
 class YourCustomForm extends Model
 {
@@ -45,6 +53,7 @@ class YourCustomForm extends Model
     {
         return [
             [['url'], 'url', 'enableIDN' => true], // <- Core validator
+            // [['url'], StrictUrlValidator::className(), 'enableIDN' => true]
             [['url'], IdnToPunycodeFilterValidator::className()],
         ];
     }
@@ -65,44 +74,6 @@ public function actionUpdate()
     }
 }
 ```
-
-
-### TwitterAccountValidator ###
-
-`TwitterAccountValidator` validates Twitter's `@id` name(aka screen name).
-
-By default, our validator repels blacklisted account name like `mentions`.
-
-Model class example:
-```php
-<?php
-namespace app\models;
-
-use Yii;
-use yii\base\Model;
-use jp3cki\yii2\validators\TwitterAccountValidator;
-
-class YourCustomForm extends Model
-{
-    public $screenName;
-
-    public function rules()
-    {
-        return [
-            [['screenName'], TwitterAccountValidator::className()],
-        ];
-    }
-
-    public function attributeLabels()
-    {
-        return [
-            'screenName' => 'Screen Name',
-        ];
-    }
-}
-```
-
-Currently, we do not support client-side(JavaScript) validation.
 
 
 ### ReCaptchaValidator ###
@@ -171,6 +142,76 @@ public function actionUpdate()
     }
 }
 ```
+
+
+### StrictUrlValidator ###
+
+`StrictUrlValidator` validates URL that checks strictly than core validator implementation.
+
+Input                   | UrlValidator(core) | StrictUrlValidator(this)
+------------------------|--------------------|-------------------------
+`http://example.com/`   | valid              | valid
+`http://example.com/あ` | valid              | invalid
+`http://example.comあ/` | valid              | invalid
+
+Model class example:
+```php
+namespace app\models;
+
+use yii\base\Model;
+use jp3cki\yii2\validators\StrictUrlValidator;
+
+class YourCustomForm extends Model
+{
+    public $url;
+
+    public function rules()
+    {
+        return [
+            [['url'], StrictUrlValidator::className(), 'enableIDN' => true]
+        ];
+    }
+}
+```
+
+
+### TwitterAccountValidator ###
+
+`TwitterAccountValidator` validates Twitter's `@id` name(aka screen name).
+
+By default, our validator repels blacklisted account name like `mentions`.
+
+Model class example:
+```php
+<?php
+namespace app\models;
+
+use Yii;
+use yii\base\Model;
+use jp3cki\yii2\validators\TwitterAccountValidator;
+
+class YourCustomForm extends Model
+{
+    public $screenName;
+
+    public function rules()
+    {
+        return [
+            [['screenName'], TwitterAccountValidator::className()],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'screenName' => 'Screen Name',
+        ];
+    }
+}
+```
+
+Currently, we do not support client-side(JavaScript) validation.
+
 
 License
 -------
