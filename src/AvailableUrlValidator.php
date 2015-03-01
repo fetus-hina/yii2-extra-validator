@@ -28,7 +28,7 @@ class AvailableUrlValidator extends Validator
             $this->message = Yii::t('jp3ckivalidator', '{attribute} is not a valid URL that is able to access.');
         }
         if ($this->userAgent  === null) {
-            $this->userAgent = $this->createDefaultUserAgentString();
+            $this->userAgent = internal\UserAgent::make(get_class());
         }
     }
 
@@ -55,16 +55,5 @@ class AvailableUrlValidator extends Validator
         $curl->setUserAgent($this->userAgent);
         $curl->head($url);
         return !$curl->error;
-    }
-
-    private function createDefaultUserAgentString()
-    {
-        $curlVersion = curl_version();
-        $parts = [];
-        $parts[] = 'AvailableUrlValidator(+http://bit.ly/18571qW)';
-        $parts[] = 'PHP-Curl-Class/' . Curl::VERSION;
-        $parts[] = 'PHP/' . PHP_VERSION;
-        $parts[] = 'curl/' . $curlVersion['version'];
-            return implode(' ', $parts);
     }
 }

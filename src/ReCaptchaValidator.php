@@ -33,7 +33,7 @@ class ReCaptchaValidator extends Validator
             $this->message = Yii::t('jp3ckivalidator', 'Please comfirm the reCAPTCHA.');
         }
         if ($this->userAgent === null) {
-            $this->userAgent = $this->createDefaultUserAgentString();
+            $this->userAgent = internal\UserAgent::make(get_class());
         }
     }
 
@@ -67,16 +67,5 @@ class ReCaptchaValidator extends Validator
             // do nothing
         }
         return false;
-    }
-
-    private function createDefaultUserAgentString()
-    {
-        $curlVersion = curl_version();
-        $parts = [];
-        $parts[] = 'ReCaptchaValidator(+http://bit.ly/18571qW)';
-        $parts[] = 'PHP-Curl-Class/' . Curl::VERSION;
-        $parts[] = 'PHP/' . PHP_VERSION;
-        $parts[] = 'curl/' . $curlVersion['version'];
-        return implode(' ', $parts);
     }
 }
