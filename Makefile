@@ -15,6 +15,7 @@ test:
 	vendor/bin/phpunit
 
 check-style:
+	vendor/bin/phpmd src text codesize,controversial,design,naming,unusedcode
 	vendor/bin/phpcs --standard=PSR2 src test
 
 fix-style:

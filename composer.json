@@ -4,7 +4,7 @@
     "description": "Validators for Yii2",
     "keywords": ["yii2", "extension", "validator", "recaptcha", "twitter"],
     "license": "MIT",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "authors": [
         {
             "name": "AIZAWA Hina",
@@ -20,6 +20,7 @@
     },
     "require-dev": {
         "codeclimate/php-test-reporter": "dev-master",
+        "phpmd/phpmd": "~2.2",
         "phpunit/phpunit": "4.*",
         "squizlabs/php_codesniffer": "2.*"
     },

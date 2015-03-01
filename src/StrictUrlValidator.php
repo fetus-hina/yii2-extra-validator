@@ -64,7 +64,7 @@ class StrictUrlValidator extends UrlValidator
         $netPath        = "//{$authority}(?:{$absPath})?";
         $hierPart       = "{$netPath}(?:\\?{$query})?";
         $absoluteUri    = "{$scheme}:{$hierPart}";
-        $UriReference   = "{$absoluteUri}(?:#{$fragment})?";
-        return "`^{$UriReference}$`";
+        $uriReference   = "{$absoluteUri}(?:#{$fragment})?";
+        return "`^{$uriReference}$`";
     }
 }
