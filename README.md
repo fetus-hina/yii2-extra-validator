@@ -25,10 +25,41 @@ Usage
 -----
 
 This package includes these validators:
+- [AvailableUrlValidator](#availableurlvalidator)
 - [IdnToPunycodeFilterValidator](#idntopunycodefiltervalidator)
 - [ReCaptchaValidator](#recaptchavalidator)
 - [StrictUrlValidator](#stricturlvalidator)
 - [TwitterAccountValidator](#twitteraccountvalidator)
+
+
+### AvailableUrlValidator ###
+
+`AvailableUrlValidator` will check that the URL is accessible.
+
+Validation will failed if remote server returns 4xx(client error) or 5xx(server error).
+
+Model class example:
+```php
+namespace app\models;
+
+use yii\base\Model;
+use jp3cki\yii2\validators\AvailableUrlValidator;
+// use jp3cki\yii2\validators\StrictUrlValidator;
+
+class YourCustomForm extends Model
+{
+    public $url;
+
+    public function rules()
+    {
+        return [
+            [['url'], 'url', 'enableIDN' => true], // <- Core validator
+            // [['url'], StrictUrlValidator::className(), 'enableIDN' => true]
+            [['url'], AvailableUrlValidator::className()],
+        ];
+    }
+}
+```
 
 
 ### IdnToPunycodeFilterValidator ###
