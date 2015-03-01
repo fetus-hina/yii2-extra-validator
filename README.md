@@ -24,6 +24,49 @@ Install
 Usage
 -----
 
+### IdnToPunycodeFilterValidator ###
+
+`IdnToPunycodeFilterValidator` is a filter validator that provides convert IDN to Punycoded domain name.
+
+This validator may useful when you store URL to the database in ASCII charset.
+
+Model class example:
+```php
+namespace app\models;
+
+use yii\base\Model;
+use jp3cki\yii2\validators\IdnToPunycodeFilterValidator;
+
+class YourCustomForm extends Model
+{
+    public $url;
+
+    public function rules()
+    {
+        return [
+            [['url'], 'url', 'enableIDN' => true], // <- Core validator
+            [['url'], IdnToPunycodeFilterValidator::className()],
+        ];
+    }
+}
+```
+
+Controller class example:
+```
+public function actionUpdate()
+{
+    $model = new YourCustomForm();
+    $model->url = 'http://ドメイン名例.JP/'; // user input
+    if ($model->validate()) {
+        // $model->url is now 'http://xn--eckwd4c7cu47r2wf.jp/'
+
+        // $dbModel->url = $model->url;
+        // $dbModel->save();
+    }
+}
+```
+
+
 ### TwitterAccountValidator ###
 
 `TwitterAccountValidator` validates Twitter's `@id` name(aka screen name).
@@ -60,6 +103,7 @@ class YourCustomForm extends Model
 ```
 
 Currently, we do not support client-side(JavaScript) validation.
+
 
 ### ReCaptchaValidator ###
 
@@ -114,12 +158,13 @@ class ReCaptchaForm extends Model
 
 ```php
 // (in Controller class)
-public function actionUpdate() {
+public function actionUpdate()
+{
     $request = Yii::$app->request;
 
     $form = new ReCaptchaForm();
     $form->recaptcha = $request->post('g-recaptcha-response'); // <- set g-recptcha-response to the validator
-    if($form->validate()) {
+    if ($form->validate()) {
         // ok
     } else {
         // failed
