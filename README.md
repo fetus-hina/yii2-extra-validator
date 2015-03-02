@@ -12,7 +12,12 @@ Requirements
 ------------
 
 - PHP 5.4.0 or later
-- Yii framework 2.0.x(?)
+  - Works on PHP 7.0 and HHVM!
+- Yii framework 2.0
+- Some php extensions is required:
+  - PCRE extension (also required by Yii)
+  - mbstring extension (also required by Yii)
+  - intl extension (also required by Yii in some action)
 
 Install
 -------
