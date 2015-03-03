@@ -31,7 +31,10 @@ Usage
 
 This package includes these validators:
 - [AvailableUrlValidator](#availableurlvalidator)
+- [ConvertCharacterWidthFilterValidator](#convertcharacterwidthfiltervalidator)
+- [HiraganaValidator](#hiraganavalidator)
 - [IdnToPunycodeFilterValidator](#idntopunycodefiltervalidator)
+- [KatakanaValidator](#katakanavalidator)
 - [ReCaptchaValidator](#recaptchavalidator)
 - [StrictUrlValidator](#stricturlvalidator)
 - [TwitterAccountValidator](#twitteraccountvalidator)
@@ -61,6 +64,72 @@ class YourCustomForm extends Model
             [['url'], 'url', 'enableIDN' => true], // <- Core validator
             // [['url'], StrictUrlValidator::className(), 'enableIDN' => true]
             [['url'], AvailableUrlValidator::className()],
+        ];
+    }
+}
+```
+
+
+### ConvertCharacterWidthFilterValidator ###
+
+`ConvertCharacterWidthFilterValidator` is a filter validator that provides normalization of character width.
+
+This validator may useful for Japanese input.
+
+このフィルタバリデータを利用すると、半角カタカナの入力を全角に変換したり、全角英数を半角英数に変換したり、カタカナをひらがなに変換したりできます。
+
+[HiraganaValidator](#hiraganavalidator)や[KatakanaValidator](#katakanavalidator)と組み合わせて使用すると便利かもしれません。
+
+Model class example:
+```php
+namespace app\models;
+
+use yii\base\Model;
+use jp3cki\yii2\validators\ConvertCharacterWidthFilterValidator;
+
+class YourCustomForm extends Model
+{
+    public $value;
+
+    public function rules()
+    {
+        return [
+            [['value'], ConvertCharacterWidthFilterValidator::className(),
+                'option' => 'asKV', // mb_convert_kana() 関数の変換書式を指定します。デフォルトは asKV です。
+                'charset' => 'UTF-8', // 必要であれば文字コードを指定します。デフォルトは Yii::app()->charset で、通常 UTF-8 です。
+            ],
+        ];
+    }
+}
+```
+
+
+### HiraganaValidator ###
+
+`HiraganaValidator` validates value that input is [hiragana](http://en.wikipedia.org/wiki/Hiragana)-only string.
+
+このバリデータは入力がひらがなのみで構成されていることを検証します。名前のふりがな入力等に利用できます。
+
+カタカナの検証を行いたい場合は[KatakanaValidator](#katakanavalidator)を使用します。
+
+Model class example:
+```php
+namespace app\models;
+
+use yii\base\Model;
+use jp3cki\yii2\validators\HiraganaValidator;
+
+class YourCustomForm extends Model
+{
+    public $value;
+
+    public function rules()
+    {
+        return [
+            [['value'], HiraganaValidator::className(),
+                'acceptSpace' => false,  // スペース（半角・全角）を許容する場合は true を設定します。デフォルトは false です。
+                'charset' => 'UTF-8', // 必要であれば文字コードを指定します。デフォルトは Yii::app()->charset で、通常 UTF-8 です。
+            ],
         ];
     }
 }
@@ -107,6 +176,38 @@ public function actionUpdate()
 
         // $dbModel->url = $model->url;
         // $dbModel->save();
+    }
+}
+```
+
+
+### KatakanaValidator ###
+
+`KatakanaValidator` validates value that input is [katakana](http://en.wikipedia.org/wiki/Katakana)-only string.
+
+このバリデータは入力がカタカナのみで構成されていることを検証します。名前のフリガナ入力等に利用できます。
+
+ひらがなの検証を行いたい場合は[HiraganaValidator](#hiraganavalidator)を使用します。
+
+Model class example:
+```php
+namespace app\models;
+
+use yii\base\Model;
+use jp3cki\yii2\validators\KatakanaValidator;
+
+class YourCustomForm extends Model
+{
+    public $value;
+
+    public function rules()
+    {
+        return [
+            [['value'], KatakanaValidator::className(),
+                'acceptSpace' => false,  // スペース（半角・全角）を許容する場合は true を設定します。デフォルトは false です。
+                'charset' => 'UTF-8', // 必要であれば文字コードを指定します。デフォルトは Yii::app()->charset で、通常 UTF-8 です。
+            ],
+        ];
     }
 }
 ```
