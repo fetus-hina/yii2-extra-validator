@@ -2,7 +2,5 @@ imports:
     - php
 
 tools:
-    external_code_coverage:
-        timeout: 2100
     php_sim: false
     php_cpd: false
