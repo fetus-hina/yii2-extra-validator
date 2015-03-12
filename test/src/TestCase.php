@@ -25,6 +25,7 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
     {
         parent::tearDown();
         $this->destroyApplication();
+        gc_collect_cycles();
     }
 
     protected function mockApplication($language = 'en-US', $config = [], $appClass = '\yii\console\Application')

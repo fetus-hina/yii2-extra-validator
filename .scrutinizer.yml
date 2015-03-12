@@ -1,6 +1,13 @@
 imports:
     - php
 
+filter:
+    excluded_paths:
+        - 'data/*'
+        - 'messages/*'
+        - 'test/*'
+        - 'util/*'
+
 tools:
     php_sim: false
     php_cpd: false
