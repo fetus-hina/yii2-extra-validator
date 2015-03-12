@@ -4,7 +4,7 @@
     "description": "Validators for Yii2",
     "keywords": ["yii2", "extension", "validator", "recaptcha", "twitter"],
     "license": "MIT",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "authors": [
         {
             "name": "AIZAWA Hina",
@@ -16,6 +16,7 @@
         "ext-intl": "*",
         "ext-pcre": "*",
         "ext-mbstring": "*",
+        "jp3cki/mb_str_replace": "~4.0",
         "php-curl-class/php-curl-class": "~2.1",
         "yiisoft/yii2": "~2.0"
     },

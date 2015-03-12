@@ -38,6 +38,8 @@ This package includes these validators:
 - [ReCaptchaValidator](#recaptchavalidator)
 - [StrictUrlValidator](#stricturlvalidator)
 - [TwitterAccountValidator](#twitteraccountvalidator)
+- [ZenginNameFilterValidator](#zenginnamefiltervalidator)
+- [ZenginNameValidator](#zenginnamevalidator)
 
 
 ### AvailableUrlValidator ###
@@ -166,7 +168,7 @@ class YourCustomForm extends Model
 ```
 
 Controller class example:
-```
+```php
 public function actionUpdate()
 {
     $model = new YourCustomForm();
@@ -348,6 +350,53 @@ class YourCustomForm extends Model
 ```
 
 Currently, we do not support client-side(JavaScript) validation.
+
+
+### ZenginNameFilterValidator ###
+### ZenginNameValidator ###
+
+These validators are useful if you are dealing with a bank account for the Japanese app.
+
+`ZenginNameFilterValidator` は入力された文字列を（自動判断できる範囲で）全銀用の文字列に変換します。
+
+実際の利用では、口座名義などにフィルタをかけ、実際のバリデータである `ZenginNameValidator` へデータへ引き継ぐことになります。
+
+`ZenginNameValidator` は入力された文字列が全銀用の文字列として妥当か検査します。
+このバリデータは例えば全角カタカナを受け付けないので、 `ZenginNameFilterValidator` を事前に通して入力の補助とできます。
+（半角カタカナで入力を強制するのは非人道的です。また、長音の代わりにハイフンを使用する必要があるなど人間が徹底して守るにはつらいです）
+
+Model class example:
+```php
+<?php
+namespace app\models;
+
+use Yii;
+use yii\base\Model;
+use jp3cki\yii2\validators\ZenginNameFilterValidator;
+use jp3cki\yii2\validators\ZenginNameValidator;
+
+class YourCustomForm extends Model
+{
+    public $accountName; // 銀行口座名義
+
+    public function rules()
+    {
+        return [
+            // [['accountName'], 'required'],
+            [['accountName'], ZenginNameFilterValidator::className()],
+            [['accountName'], ZenginNameValidator::className()],
+            // [['accountName'], 'string', 'max' => 30],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'accountName' => '銀行口座名義',
+        ];
+    }
+}
+```
 
 
 License

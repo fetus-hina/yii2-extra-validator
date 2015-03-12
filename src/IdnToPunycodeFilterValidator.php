@@ -18,7 +18,7 @@ class IdnToPunycodeFilterValidator extends FilterValidator
     /** @inheritdoc */
     public function init()
     {
-        $this->filter = function($value) {
+        $this->filter = function ($value) {
             if (strpos($value, '/') === false) {
                 return strtolower(idn_to_ascii($value));
             }
