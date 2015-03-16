@@ -28,5 +28,16 @@ install:
 
 script:
   - find . -type f -name "*.php" | grep -v vendor | xargs -n 1 php -l
-  - vendor/bin/phpunit --verbose test
   - make check-style
+  - |
+    if [ $TRAVIS_BRANCH = 'master' -a $TRAVIS_PHP_VERSION = '5.6' ]; then
+      make clover.xml
+    else
+      make test
+    fi
+
+after_script:
+  - |
+    if [ -f clover.xml ]; then
+      vendor/bin/test-reporter --coverage-report clover.xml
+    fi

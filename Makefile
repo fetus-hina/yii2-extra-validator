@@ -14,6 +14,9 @@ depends-update: install-composer
 test:
 	vendor/bin/phpunit
 
+clover.xml:
+	vendor/bin/phpunit --coverage-clover=clover.xml
+
 check-style:
 	vendor/bin/phpmd src text codesize,controversial,design,naming,unusedcode
 	vendor/bin/phpcs --standard=PSR2 src test
@@ -27,4 +30,4 @@ clean:
 composer.phar:
 	curl -sS https://getcomposer.org/installer | php
 
-.PHONY: all init install-composer depends-install depends-update test clean check-style fix-style
+.PHONY: all init install-composer depends-install depends-update test clean check-style fix-style clover.xml

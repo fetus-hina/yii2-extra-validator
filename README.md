@@ -34,6 +34,7 @@ This package includes these validators:
 - [ConvertCharacterWidthFilterValidator](#convertcharacterwidthfiltervalidator)
 - [HiraganaValidator](#hiraganavalidator)
 - [IdnToPunycodeFilterValidator](#idntopunycodefiltervalidator)
+- [JpPhoneValidator](#jpphonevalidator)
 - [KatakanaValidator](#katakanavalidator)
 - [ReCaptchaValidator](#recaptchavalidator)
 - [StrictUrlValidator](#stricturlvalidator)
@@ -181,6 +182,63 @@ public function actionUpdate()
     }
 }
 ```
+
+
+### JpPhoneValidator ###
+
+`JpPhoneValidator` validates that input is phone-number in Japan.
+
+このバリデータは入力が日本の電話番号らしい文字列であることを検証します。
+
+市外局番が存在するかなどのチェックは行えますが、番号が実在することは確認できません。
+
+フリーダイヤル等を許容するかどうか、ハイフンを許容するかどうかを設定できます（ハイフンの位置が間違っている場合はエラーになります）。
+`110` 等の特番は扱えません。
+
+Model class example:
+```php
+namespace app\models;
+
+use yii\base\Model;
+use jp3cki\yii2\validators\JpPhoneValidator;
+
+class YourCustomForm extends Model
+{
+    public $value;
+
+    public function rules()
+    {
+        return [
+            [['value'], JpPhoneValidator::className(),
+                'types' => JpPhoneValidator::FLAG_CONSUMERS, // 意味は後述
+                'hyphen' => null, // 意味は後述
+            ],
+        ];
+    }
+}
+```
+
+`types`: 許容する電話番号の種類を設定します。複数の種類を受け入れる場合は bit-or `|` で接続します。デフォルトは `FLAG_CONSUMERS` です。
+    * `FLAG_LANDLINE`: 固定電話の番号を受け入れます。
+    * `FLAG_MOBILE`: `090` `080` `070` の携帯電話・PHSを受け入れます（番号ポータビリティ等の都合により、電話会社を識別したりPHSを識別したりはできません）。
+    * `FLAG_IP_PHONE`: `050` のIP電話を受け入れます（050でないIP電話は固定電話と区別がつきません）。
+    * `FLAG_FREE_DIAL`: `0120` のフリーダイヤルを受け入れます。ハイフンの位置は`0120-000-000`か`0120-00-0000`を受け入れるようになっています。 `FLAG_FREE_ACCESS` も参照してください。
+    * `FLAG_FREE_ACCESS`: `0800` のフリーアクセスを受け入れます。 `FLAG_FREE_DIAL` も参照してください。
+    * `FLAG_NAV_DIAL`: `0570` のナビダイヤルを受け入れます。
+    * `FLAG_DIAL_Q2`: `0990` のダイヤルQ2を受け入れます。ダイヤルQ2は既にサービスを終了したため利用することはないでしょう。（このライブラリからもじきに削除されます）
+    * `FLAG_PAGER`: `020` のポケットベルを受け入れます。
+
+利便性のために次の定数も準備されています。
+
+    * `FLAG_CONSUMERS`: `FLAG_LANDLINE|FLAG_MOBILE|FLAG_IP_PHONE`。顧客情報を登録してもらう際に一般的に必要となりそうな番号です。
+    * `FLAG_ALL`: サポートしている全ての種類を受け入れます。
+
+なお、`FLAG_FREE_DIAL` と `FLAG_FREE_ACCESS` を分けて設定する意味はあまりないものと推測されます。
+
+`hyphen`: ハイフンの許可状況を設定します。
+    * `null`: ハイフンの有無を気にしません（ハイフンが記入されている場合は正しい位置にハイフンがある必要があります）。
+    * `true`: ハイフンを必須とします。（正しい位置にハイフンがある必要があります）
+    * `false`: ハイフンを許容しません。（数字のみの羅列である必要があります）
 
 
 ### KatakanaValidator ###
