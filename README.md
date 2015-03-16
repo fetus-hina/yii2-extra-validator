@@ -35,6 +35,7 @@ This package includes these validators:
 - [HiraganaValidator](#hiraganavalidator)
 - [IdnToPunycodeFilterValidator](#idntopunycodefiltervalidator)
 - [JpPhoneValidator](#jpphonevalidator)
+- [JpPostalCodeValidator](#jppostalcodevalidator)
 - [KatakanaValidator](#katakanavalidator)
 - [ReCaptchaValidator](#recaptchavalidator)
 - [StrictUrlValidator](#stricturlvalidator)
@@ -227,7 +228,7 @@ class YourCustomForm extends Model
   * `FLAG_FREE_ACCESS`: `0800` のフリーアクセスを受け入れます。 `FLAG_FREE_DIAL` も参照してください。
   * `FLAG_NAV_DIAL`: `0570` のナビダイヤルを受け入れます。
   * `FLAG_DIAL_Q2`: `0990` のダイヤルQ2を受け入れます。ダイヤルQ2は既にサービスを終了したため利用することはないでしょう。（このライブラリからもじきに削除されます）
-    * `FLAG_PAGER`: `020` のポケットベルを受け入れます。
+  * `FLAG_PAGER`: `020` のポケットベルを受け入れます。
 
 利便性のために次の定数も準備されています。
 
@@ -235,6 +236,43 @@ class YourCustomForm extends Model
   * `FLAG_ALL`: サポートしている全ての種類を受け入れます。
 
 なお、`FLAG_FREE_DIAL` と `FLAG_FREE_ACCESS` を分けて設定する意味はあまりないものと推測されます。
+
+`hyphen`: ハイフンの許可状況を設定します。
+
+  * `null`: ハイフンの有無を気にしません（ハイフンが記入されている場合は正しい位置にハイフンがある必要があります）。
+  * `true`: ハイフンを必須とします。（正しい位置にハイフンがある必要があります）
+  * `false`: ハイフンを許容しません。（数字のみの羅列である必要があります）
+
+
+### JpPostalCodeValidator ###
+
+`JpPostalCodeValidator` validates that input is postal code(zip code) in Japan.
+
+このバリデータは入力が日本の郵便番号らしい文字列であることを検証します。
+
+通常の郵便番号の他、事業所等に割り当てられた番号も検証することができます。
+
+Model class example:
+```php
+namespace app\models;
+
+use yii\base\Model;
+use jp3cki\yii2\validators\JpPostalCodeValidator;
+
+class YourCustomForm extends Model
+{
+    public $value;
+
+    public function rules()
+    {
+        return [
+            [['value'], JpPostalCodeValidator::className(),
+                'hyphen' => null, // 意味は後述
+            ],
+        ];
+    }
+}
+```
 
 `hyphen`: ハイフンの許可状況を設定します。
 
