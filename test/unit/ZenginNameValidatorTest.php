@@ -6,6 +6,9 @@ use yii\base\DynamicModel;
 use jp3cki\yii2\validators\ZenginNameValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 
+/**
+ * @group zengin
+ */
 class ZenginNameValidatorTest extends TestCase
 {
     public function setUp()

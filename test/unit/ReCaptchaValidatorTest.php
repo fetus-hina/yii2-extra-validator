@@ -6,6 +6,9 @@ use jp3cki\yii2\validators\ReCaptchaValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 use jp3cki\yii2\validators\testsrc\models\ModelForReCaptchaValidator as TestModel;
 
+/**
+ * @group recaptcha
+ */
 class ReCaptchaValidatorTest extends TestCase
 {
     public function setUp()

@@ -6,6 +6,9 @@ use jp3cki\yii2\validators\AvailableUrlValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 use jp3cki\yii2\validators\testsrc\models\ModelForAvailableUrlValidator as TestModel;
 
+/**
+ * @group url
+ */
 class AvailableUrlValidatorTest extends TestCase
 {
     public function setUp()

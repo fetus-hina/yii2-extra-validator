@@ -5,6 +5,9 @@ use Yii;
 use jp3cki\yii2\validators\StrictUrlValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 
+/**
+ * @group url
+ */
 class StrictUrlValidatorTest extends TestCase
 {
     public function setUp()

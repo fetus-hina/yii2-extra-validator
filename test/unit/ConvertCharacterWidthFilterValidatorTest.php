@@ -6,6 +6,9 @@ use yii\base\DynamicModel;
 use jp3cki\yii2\validators\ConvertCharacterWidthFilterValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 
+/**
+ * @group japanese
+ */
 class ConvertCharacterWidthFilterValidatorTest extends TestCase
 {
     public function setUp()

@@ -6,6 +6,9 @@ use yii\base\DynamicModel;
 use jp3cki\yii2\validators\JpPostalCodeValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 
+/**
+ * @group postalcode
+ */
 class JpPostalCodeValidatorTest extends TestCase
 {
     public function setUp()

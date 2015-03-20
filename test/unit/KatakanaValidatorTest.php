@@ -6,6 +6,9 @@ use yii\base\DynamicModel;
 use jp3cki\yii2\validators\KatakanaValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 
+/**
+ * @group japanese
+ */
 class KatakanaValidatorTest extends TestCase
 {
     public function setUp()

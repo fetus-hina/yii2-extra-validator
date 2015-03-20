@@ -6,6 +6,9 @@ use jp3cki\yii2\validators\TwitterAccountValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 use jp3cki\yii2\validators\testsrc\models\ModelForTwitterAccountValidator as TestModel;
 
+/**
+ * @group sns
+ */
 class TwitterAccountValidatorTest extends TestCase
 {
     public function setUp()
