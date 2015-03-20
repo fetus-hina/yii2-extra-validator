@@ -14,8 +14,8 @@
     "require": {
         "php":  ">=5.4.0",
         "ext-intl": "*",
-        "ext-pcre": "*",
         "ext-mbstring": "*",
+        "ext-pcre": "*",
         "jp3cki/mb_str_replace": "~4.0",
         "php-curl-class/php-curl-class": "~2.1",
         "yiisoft/yii2": "~2.0"
