@@ -66,6 +66,11 @@ class JpPostalCodeValidatorTest extends TestCase
 
             // 後半部存在しない
             [false, null, '999-9999'],
+
+            // 桁数異常
+            [false, null, '100-00'],
+            [false, null, '10000'],
+            [false, null, '10000050'],
         ];
     }
 }
