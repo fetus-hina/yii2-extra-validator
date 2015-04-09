@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2f0e152808694d427e8944456402209b",
+    "hash": "164edb14c11878643633f30a6d3eba13",
     "packages": [
         {
             "name": "bower-asset/jquery",
@@ -365,6 +365,64 @@
                 "yii2"
             ],
             "time": "2015-03-18 18:16:26"
+        },
+        {
+            "name": "jp3cki/yii2-jp-postalcode-validator",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fetus-hina/yii2-jp-postalcode-validator.git",
+                "reference": "3b29f2247abecedbfa5b8ad0721438b0afa35a72"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fetus-hina/yii2-jp-postalcode-validator/zipball/3b29f2247abecedbfa5b8ad0721438b0afa35a72",
+                "reference": "3b29f2247abecedbfa5b8ad0721438b0afa35a72",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pcre": "*",
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "~2.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "php-curl-class/php-curl-class": "~3.4",
+                "phpmd/phpmd": "~2.2",
+                "phpoffice/phpexcel": "~1.8",
+                "phpunit/phpunit": "4.*",
+                "squizlabs/php_codesniffer": "2.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "bootstrap": "jp3cki\\yii2\\jppostalcode\\internal\\Bootstrap"
+            },
+            "autoload": {
+                "psr-4": {
+                    "jp3cki\\yii2\\jppostalcode\\": "src",
+                    "jp3cki\\yii2\\jppostalcode\\test\\": "test/src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "AIZAWA Hina",
+                    "email": "hina@bouhime.com"
+                }
+            ],
+            "description": "Postal code validator for Yii Framework2",
+            "keywords": [
+                "extension",
+                "japan",
+                "postalcode",
+                "validator",
+                "yii2",
+                "zipcode"
+            ],
+            "time": "2015-04-09 12:59:53"
         },
         {
             "name": "php-curl-class/php-curl-class",

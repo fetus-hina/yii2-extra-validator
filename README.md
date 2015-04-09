@@ -34,7 +34,6 @@ This package includes these validators:
 - [ConvertCharacterWidthFilterValidator](#convertcharacterwidthfiltervalidator)
 - [HiraganaValidator](#hiraganavalidator)
 - [IdnToPunycodeFilterValidator](#idntopunycodefiltervalidator)
-- [JpPostalCodeValidator](#jppostalcodevalidator)
 - [KatakanaValidator](#katakanavalidator)
 - [ReCaptchaValidator](#recaptchavalidator)
 - [StrictUrlValidator](#stricturlvalidator)
@@ -45,6 +44,8 @@ This package includes these validators:
 This validator is deprecated:
 - ~~[JpPhoneValidator](#jpphonevalidator)~~
     - Use [yii2-jp-phone-validator](https://github.com/fetus-hina/yii2-jp-phone-validator)
+- ~~[JpPostalCodeValidator](#jppostalcodevalidator)~~
+    - Use [yii2-jp-postalcode-validator](https://github.com/fetus-hina/yii2-jp-postalcode-validator)
 
 
 ### AvailableUrlValidator ###
@@ -202,37 +203,10 @@ public function actionUpdate()
 
 `JpPostalCodeValidator` validates that input is postal code(zip code) in Japan.
 
-このバリデータは入力が日本の郵便番号らしい文字列であることを検証します。
+`JpPostalCodeValidator` has been moved to [jp3cki/yii2-jp-postalcode-validator](https://github.com/fetus-hina/yii2-jp-postalcode-validator).
 
-通常の郵便番号の他、事業所等に割り当てられた番号も検証することができます。
+`jp3cki\yii2\validators\JpPostalCodeValidator` is now deprecated and will be removed in version 2.0.
 
-Model class example:
-```php
-namespace app\models;
-
-use yii\base\Model;
-use jp3cki\yii2\validators\JpPostalCodeValidator;
-
-class YourCustomForm extends Model
-{
-    public $value;
-
-    public function rules()
-    {
-        return [
-            [['value'], JpPostalCodeValidator::className(),
-                'hyphen' => null, // 意味は後述
-            ],
-        ];
-    }
-}
-```
-
-`hyphen`: ハイフンの許可状況を設定します。
-
-  * `null`: ハイフンの有無を気にしません（ハイフンが記入されている場合は正しい位置にハイフンがある必要があります）。
-  * `true`: ハイフンを必須とします。（正しい位置にハイフンがある必要があります）
-  * `false`: ハイフンを許容しません。（数字のみの羅列である必要があります）
 
 
 ### KatakanaValidator ###
