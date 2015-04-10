@@ -41,7 +41,7 @@ This package includes these validators:
 - [ZenginNameFilterValidator](#zenginnamefiltervalidator)
 - [ZenginNameValidator](#zenginnamevalidator)
 
-These validators are deperecated:
+These validators are deprecated:
 - ~~[JpPhoneValidator](#jpphonevalidator)~~
     - Use [yii2-jp-phone-validator](https://github.com/fetus-hina/yii2-jp-phone-validator)
 - ~~[JpPostalCodeValidator](#jppostalcodevalidator)~~
