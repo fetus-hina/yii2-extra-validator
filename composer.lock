@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ba3c88bf761e51658063044f774a52c2",
+    "hash": "be5d7062f66ddd911de5ee2ec55f4298",
     "packages": [
         {
             "name": "bower-asset/jquery",
@@ -308,123 +308,6 @@
             ],
             "description": "The mb_str_replace() implementation.",
             "time": "2015-03-12 09:26:01"
-        },
-        {
-            "name": "jp3cki/yii2-jp-phone-validator",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fetus-hina/yii2-jp-phone-validator.git",
-                "reference": "4c1ded287c519860227d922f98b508f26a5dbef7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fetus-hina/yii2-jp-phone-validator/zipball/4c1ded287c519860227d922f98b508f26a5dbef7",
-                "reference": "4c1ded287c519860227d922f98b508f26a5dbef7",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pcre": "*",
-                "php": ">=5.4.0",
-                "yiisoft/yii2": "~2.0"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "dev-master",
-                "php-curl-class/php-curl-class": "~3.4",
-                "phpmd/phpmd": "~2.2",
-                "phpoffice/phpexcel": "~1.8",
-                "phpunit/phpunit": "4.*",
-                "squizlabs/php_codesniffer": "2.*"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "bootstrap": "jp3cki\\yii2\\jpphone\\internal\\Bootstrap"
-            },
-            "autoload": {
-                "psr-4": {
-                    "jp3cki\\yii2\\jpphone\\": "src",
-                    "jp3cki\\yii2\\jpphone\\test\\": "test/src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "AIZAWA Hina",
-                    "email": "hina@bouhime.com"
-                }
-            ],
-            "description": "Phone number validator for Yii Framework2",
-            "keywords": [
-                "extension",
-                "japan",
-                "phone",
-                "tel",
-                "telephone",
-                "validator",
-                "yii2"
-            ],
-            "time": "2015-06-04 12:32:48"
-        },
-        {
-            "name": "jp3cki/yii2-jp-postalcode-validator",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fetus-hina/yii2-jp-postalcode-validator.git",
-                "reference": "d21c3c70e2c355fd12de549e4e2c9f96d3b66243"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fetus-hina/yii2-jp-postalcode-validator/zipball/d21c3c70e2c355fd12de549e4e2c9f96d3b66243",
-                "reference": "d21c3c70e2c355fd12de549e4e2c9f96d3b66243",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pcre": "*",
-                "php": ">=5.4.0",
-                "yiisoft/yii2": "~2.0"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "dev-master",
-                "php-curl-class/php-curl-class": "~3.4",
-                "phpmd/phpmd": "~2.2",
-                "phpoffice/phpexcel": "~1.8",
-                "phpunit/phpunit": "4.*",
-                "squizlabs/php_codesniffer": "2.*"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "bootstrap": "jp3cki\\yii2\\jppostalcode\\internal\\Bootstrap"
-            },
-            "autoload": {
-                "psr-4": {
-                    "jp3cki\\yii2\\jppostalcode\\": "src",
-                    "jp3cki\\yii2\\jppostalcode\\test\\": "test/src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "AIZAWA Hina",
-                    "email": "hina@bouhime.com"
-                }
-            ],
-            "description": "Postal code validator for Yii Framework2",
-            "keywords": [
-                "extension",
-                "japan",
-                "postalcode",
-                "validator",
-                "yii2",
-                "zipcode"
-            ],
-            "time": "2015-06-04 12:41:14"
         },
         {
             "name": "php-curl-class/php-curl-class",

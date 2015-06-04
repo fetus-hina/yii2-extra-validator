@@ -41,13 +41,6 @@ This package includes these validators:
 - [ZenginNameFilterValidator](#zenginnamefiltervalidator)
 - [ZenginNameValidator](#zenginnamevalidator)
 
-These validators are deprecated:
-- ~~[JpPhoneValidator](#jpphonevalidator)~~
-    - Use [yii2-jp-phone-validator](https://github.com/fetus-hina/yii2-jp-phone-validator)
-- ~~[JpPostalCodeValidator](#jppostalcodevalidator)~~
-    - Use [yii2-jp-postalcode-validator](https://github.com/fetus-hina/yii2-jp-postalcode-validator)
-
-
 ### AvailableUrlValidator ###
 
 `AvailableUrlValidator` will check that the URL is accessible.
@@ -187,26 +180,6 @@ public function actionUpdate()
     }
 }
 ```
-
-
-### JpPhoneValidator ###
-
-~~`JpPhoneValidator` validates that input is phone-number in Japan.~~
-
-`JpPhoneValidator` has been moved to [jp3cki/yii2-jp-phone-validator](https://github.com/fetus-hina/yii2-jp-phone-validator).
-
-`jp3cki\yii2\validators\JpPhoneValidator` is now deprecated and will be removed in version 2.0.
-
-
-
-### JpPostalCodeValidator ###
-
-`JpPostalCodeValidator` validates that input is postal code(zip code) in Japan.
-
-`JpPostalCodeValidator` has been moved to [jp3cki/yii2-jp-postalcode-validator](https://github.com/fetus-hina/yii2-jp-postalcode-validator).
-
-`jp3cki\yii2\validators\JpPostalCodeValidator` is now deprecated and will be removed in version 2.0.
-
 
 
 ### KatakanaValidator ###

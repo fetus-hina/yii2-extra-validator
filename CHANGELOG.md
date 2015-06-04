@@ -67,3 +67,13 @@ CHANGELOG
         - Use [jp3cki/yii2-jp-postalcode-validator](https://github.com/fetus-hina/yii2-jp-postalcode-validator) instead.
         - Compatibility code will remove in 2.0.0.
 
+2.0.0
+-----
+
+* Has *NOT* backward compatibility.
+* These validators has beed removed:
+    - JpPhoneValidator
+        - Use [jp3cki/yii2-jp-phone-validator](https://github.com/fetus-hina/yii2-jp-phone-validator) instead.
+    - JpPostalCodeValidator
+        - Use [jp3cki/yii2-jp-postalcode-validator](https://github.com/fetus-hina/yii2-jp-postalcode-validator) instead.
+
