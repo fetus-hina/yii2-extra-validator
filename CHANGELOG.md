@@ -77,3 +77,8 @@ CHANGELOG
     - JpPostalCodeValidator
         - Use [jp3cki/yii2-jp-postalcode-validator](https://github.com/fetus-hina/yii2-jp-postalcode-validator) instead.
 
+2.0.1
+-----
+
+* Has backward compatibility.
+* The modules which used by this package is now updated.
