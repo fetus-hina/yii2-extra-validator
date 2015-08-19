@@ -82,3 +82,9 @@ CHANGELOG
 
 * Has backward compatibility.
 * The modules which used by this package is now updated.
+
+2.0.2
+-----
+
+* Has backward compatibility.
+* The modules which used by this package is now updated.
