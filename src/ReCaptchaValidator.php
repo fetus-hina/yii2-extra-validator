@@ -60,6 +60,9 @@ class ReCaptchaValidator extends Validator
             $curl = new Curl();
             $curl->setUserAgent($this->userAgent);
             $ret = $curl->post($this->endPoint, $params);
+            if ($curl->error) {
+                return false;
+            }
             if (($ret instanceof stdClass) && isset($ret->success) && $ret->success === true) {
                 return true;
             }

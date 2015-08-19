@@ -17,7 +17,7 @@
         "ext-mbstring": "*",
         "ext-pcre": "*",
         "jp3cki/mb_str_replace": "^4.0",
-        "php-curl-class/php-curl-class": "^3.6",
+        "php-curl-class/php-curl-class": "^4.6",
         "yiisoft/yii2": "^2.0"
     },
     "require-dev": {

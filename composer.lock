@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "714e9d5b66dd0c7756cec02de199cccb",
+    "hash": "199cc37c6f41955f1de7084d48f38a82",
     "packages": [
         {
             "name": "bower-asset/jquery",
@@ -311,16 +311,16 @@
         },
         {
             "name": "php-curl-class/php-curl-class",
-            "version": "3.6.7",
+            "version": "4.6.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-curl-class/php-curl-class.git",
-                "reference": "f26db010d5cd038417290b8daf4c45e12d473b4a"
+                "reference": "473f080a12322365a4dac1e1a414590ea9fc1839"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/f26db010d5cd038417290b8daf4c45e12d473b4a",
-                "reference": "f26db010d5cd038417290b8daf4c45e12d473b4a",
+                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/473f080a12322365a4dac1e1a414590ea9fc1839",
+                "reference": "473f080a12322365a4dac1e1a414590ea9fc1839",
                 "shasum": ""
             },
             "require": {
@@ -363,7 +363,7 @@
                 "web service",
                 "xml"
             ],
-            "time": "2015-07-29 00:48:33"
+            "time": "2015-08-13 15:50:05"
         },
         {
             "name": "yiisoft/yii2",
