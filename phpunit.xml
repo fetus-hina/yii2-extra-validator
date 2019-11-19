@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
     bootstrap="vendor/yiisoft/yii2/Yii.php"
-    color="true"
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
     convertWarningsToExceptions="true"
@@ -12,11 +11,9 @@
     </testsuite>
   </testsuites>
   <filter>
-    <blacklist>
-      <directory>./vendor</directory>
-      <directory>./data</directory>
-      <directory>./util</directory>
+    <whitelist>
+      <directory>./src</directory>
       <directory>./test</directory>
-    </blacklist>
+    </whitelist>
   </filter>
 </phpunit>

@@ -1,4 +1,5 @@
 <?php
+
 namespace jp3cki\yii2\validators\test;
 
 use Yii;
@@ -36,22 +37,26 @@ class ReCaptchaValidatorTest extends TestCase
 
     public function testSuccessful()
     {
-        $o = new TestModel();
-        $o->init();
-        $o->scenario = 'successfulTest';
-        $o->value = 'TEST';
-        $this->assertTrue($o->validate());
+        $this->markTestSkipped('Test skipped due to test host missing now');
+
+        // $o = new TestModel();
+        // $o->init();
+        // $o->scenario = 'successfulTest';
+        // $o->value = 'TEST';
+        // $this->assertTrue($o->validate());
     }
 
     public function testFailure()
     {
-        $o = new TestModel();
-        $o->init();
-        $o->scenario = 'failureTest';
-        $o->value = 'TEST';
-        $this->assertFalse($o->validate());
-        $this->assertGreaterThan(0, count($o->errors['value']));
-        $this->assertNotEmpty($o->errors['value']);
+        $this->markTestSkipped('Test skipped due to test host missing now');
+
+        // $o = new TestModel();
+        // $o->init();
+        // $o->scenario = 'failureTest';
+        // $o->value = 'TEST';
+        // $this->assertFalse($o->validate());
+        // $this->assertGreaterThan(0, count($o->errors['value']));
+        // $this->assertNotEmpty($o->errors['value']);
     }
 
     public function testNetworkFailure()

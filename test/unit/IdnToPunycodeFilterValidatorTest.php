@@ -1,4 +1,5 @@
 <?php
+
 namespace jp3cki\yii2\validators\test;
 
 use Yii;

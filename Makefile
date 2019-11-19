@@ -1,52 +1,35 @@
-all: init
+.PHONY: all
+all: test
 
-init: install-composer depends-install
-
-install-composer: composer.phar
-
-depends-install: install-composer
-	php composer.phar install
-
-depends-update: install-composer
-	php composer.phar self-update
-	php composer.phar update
-
-test:
+.PHONY: test
+test: vendor check-style
 	vendor/bin/phpunit --group=japanese
 	vendor/bin/phpunit --group=recaptcha
 	vendor/bin/phpunit --group=sns
 	vendor/bin/phpunit --group=url
 	vendor/bin/phpunit --group=zengin
 
-clover.xml: japanese.cov recaptcha.cov sns.cov url.cov zengin.cov
-	vendor/bin/phpcov merge --clover=clover.xml build
+.PHONY: check-style
+check-style: vendor
+	find . \( -type d \( -name '.git' -or -name 'vendor' -or -name 'runtime' \) -prune \) -or \( -type f -name '*.php' -print \) | xargs -n 1 php -l
+	vendor/bin/phpcs --standard=PSR12 src test
 
-japanese.cov: FORCE
-	vendor/bin/phpunit --group=japanese --coverage-php=build/japanese.cov
+.PHONY: fix-style
+fix-style: vendor
+	vendor/bin/phpcbf --standard=PSR12 src test
 
-recaptcha.cov: FORCE
-	vendor/bin/phpunit --group=recaptcha --coverage-php=build/recaptcha.cov
-
-sns.cov: FORCE
-	vendor/bin/phpunit --group=sns --coverage-php=build/sns.cov
-
-url.cov: FORCE
-	vendor/bin/phpunit --group=url --coverage-php=build/url.cov
-
-zengin.cov: FORCE
-	vendor/bin/phpunit --group=zengin --coverage-php=build/zengin.cov
-
-check-style: FORCE
-	vendor/bin/phpmd src text codesize,controversial,design,naming,unusedcode
-	vendor/bin/phpcs --standard=PSR2 src test
-
-fix-style:
-	vendor/bin/phpcbf --standard=PSR2 src test
-
+.PHONY: clean
 clean:
-	rm -rf vendor composer.phar clover.xml build/*.cov
+	rm -rf vendor composer.phar
+
+composer.lock: composer.json composer.phar
+	./composer.phar update -v
+	touch $@
+
+vendor: composer.lock composer.phar
+	./composer.phar install -v
+	touch $@
 
 composer.phar:
 	curl -sS https://getcomposer.org/installer | php
-
-.PHONY: all init install-composer depends-install depends-update test clean check-style fix-style FORCE
+	touch -r composer.json $@

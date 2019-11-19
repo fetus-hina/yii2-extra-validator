@@ -5,15 +5,11 @@ yii2-extra-validator
 [![Latest Stable Version](https://poser.pugx.org/jp3cki/yii2-extra-validator/v/stable.svg)](https://packagist.org/packages/jp3cki/yii2-extra-validator)
 [![Build Status](https://travis-ci.org/fetus-hina/yii2-extra-validator.svg?branch=master)](https://travis-ci.org/fetus-hina/yii2-extra-validator)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fetus-hina/yii2-extra-validator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fetus-hina/yii2-extra-validator/?branch=master)
-[![Code Climate](https://codeclimate.com/github/fetus-hina/yii2-extra-validator/badges/gpa.svg)](https://codeclimate.com/github/fetus-hina/yii2-extra-validator)
-[![Test Coverage](https://codeclimate.com/github/fetus-hina/yii2-extra-validator/badges/coverage.svg)](https://codeclimate.com/github/fetus-hina/yii2-extra-validator)
-[![Dependency Status](https://www.versioneye.com/user/projects/55d4d6356dbe17001b000013/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55d4d6356dbe17001b000013)
 
 Requirements
 ------------
 
-- PHP 5.4.0 or later
-  - Works on PHP 7.0 and HHVM!
+- PHP 7.1 or later
 - Yii framework 2.0
 - Some php extensions is required:
   - PCRE extension (also required by Yii)
@@ -407,7 +403,7 @@ License
 ```
 The MIT License (MIT)
 
-Copyright (c) 2015 AIZAWA Hina <hina@bouhime.com>
+Copyright (c) 2015-2019 AIZAWA Hina <hina@fetus.jp>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

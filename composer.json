@@ -4,29 +4,24 @@
     "description": "Validators for Yii2",
     "keywords": ["yii2", "extension", "validator", "recaptcha", "twitter"],
     "license": "MIT",
-    "version": "2.0.2",
     "authors": [
         {
             "name": "AIZAWA Hina",
-            "email": "hina@bouhime.com"
+            "email": "hina@fetus.jp"
         }
     ],
     "require": {
-        "php":  ">=5.4.0",
+        "php": ">= 7.1.0",
         "ext-intl": "*",
         "ext-mbstring": "*",
         "ext-pcre": "*",
         "jp3cki/mb_str_replace": "^4.0",
-        "php-curl-class/php-curl-class": "^4.6",
-        "yiisoft/yii2": "^2.0"
+        "php-curl-class/php-curl-class": "^8.6.1",
+        "yiisoft/yii2": "~2.0"
     },
     "require-dev": {
-        "codeclimate/php-test-reporter": "dev-master",
-        "phpmd/phpmd": "^2.2",
-        "phpoffice/phpexcel": "^1.8",
-        "phpunit/phpcov": "dev-master",
-        "phpunit/phpunit": "^4.7",
-        "squizlabs/php_codesniffer": "^2.3"
+        "phpunit/phpunit": "*",
+        "squizlabs/php_codesniffer": "^3.5.2"
     },
     "autoload": {
         "psr-4": {
@@ -36,5 +31,10 @@
     },
     "extra": {
         "bootstrap": "jp3cki\\yii2\\validators\\internal\\Bootstrap"
+    },
+    "config": {
+        "platform": {
+            "php": "7.1.33"
+        }
     }
 }

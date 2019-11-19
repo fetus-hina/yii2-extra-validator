@@ -1,14 +1,14 @@
 <?php
+
 namespace jp3cki\yii2\validators\testsrc;
 
-use PHPUnit_Framework_TestCase;
 use Yii;
 use yii\base\NotSupprtException;
 use yii\helpers\ArrayHelper;
 
-abstract class TestCase extends PHPUnit_Framework_TestCase
+abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         $vendorDir = __DIR__ . '/../../vendor';
         $vendorAutoload = $vendorDir . '/autoload.php';
@@ -21,7 +21,7 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
         Yii::setAlias('@vendor', $vendorDir);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         $this->destroyApplication();
@@ -30,7 +30,8 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
 
     protected function mockApplication($language = 'en-US', $config = [], $appClass = '\yii\console\Application')
     {
-        new $appClass(ArrayHelper::merge([
+        new $appClass(ArrayHelper::merge(
+            [
                 'id' => 'testapp',
                 'basePath' => __DIR__ . '/..',
                 'vendorPath' => __DIR__ . '/../../vendor',
@@ -38,12 +39,13 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
                 'bootstrap' => [
                     'jp3cki\yii2\validators\internal\Bootstrap',
                 ],
-            ], $config)
-        );
+            ],
+            $config
+        ));
     }
 
     protected function destroyApplication()
     {
-        \Yii::$app = null;
+        Yii::$app = null;
     }
 }
