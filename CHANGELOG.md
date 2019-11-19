@@ -88,3 +88,9 @@ CHANGELOG
 
 * Has backward compatibility.
 * The modules which used by this package is now updated.
+
+3.0.0
+-----
+
+* *ALMOST* it has backward compatibility.
+* Minimum requirements updated to PHP 7.1
