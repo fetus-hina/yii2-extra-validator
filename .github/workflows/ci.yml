@@ -1,0 +1,112 @@
+name: CI
+'on':
+  - push
+jobs:
+  phpSyntaxCheck:
+    name: 'Syntax Check (PHP ${{ matrix.php.version }})'
+    strategy:
+      matrix:
+        php:
+          -
+            version: '8.0'
+            experimental: false
+          -
+            version: '8.1'
+            experimental: false
+          -
+            version: '8.2'
+            experimental: false
+          -
+            version: '8.3'
+            experimental: true
+    runs-on: ubuntu-22.04
+    steps:
+      -
+        uses: actions/checkout@v3
+      -
+        name: 'Set up PHP ${{ matrix.php.version }}'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '${{ matrix.php.version }}'
+      -
+        name: 'Syntax Check'
+        continue-on-error: '${{ matrix.php.experimental }}'
+        env:
+          LANG: C
+        run: |
+          find . \( -type d \( -name '.git' -or -name 'vendor' -or -name 'node_modules' -or -name 'runtime' \) -prune \) -or \( -type f -name '*.php' -print \) \
+            | sort \
+            | xargs -n 1 php -l
+  phpcs:
+    name: PHPCS
+    runs-on: ubuntu-22.04
+    needs:
+      - phpSyntaxCheck
+    steps:
+      -
+        uses: actions/checkout@v3
+      -
+        name: 'Set up PHP ${{ matrix.php.version }}'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+      -
+        name: 'Install Composer dependencies'
+        run: 'composer install'
+      -
+        name: 'Run PHPCS'
+        run: ./vendor/bin/phpcs
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-22.04
+    needs:
+      - phpSyntaxCheck
+    steps:
+      -
+        uses: actions/checkout@v3
+      -
+        name: 'Set up PHP 8.0'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+      -
+        name: 'Install Composer dependencies'
+        run: 'composer install'
+      -
+        name: 'Run PHPStan'
+        run: './vendor/bin/phpstan --memory-limit=1G'
+  test:
+    name: 'Test (PHP ${{ matrix.php.version }})'
+    needs:
+      - phpSyntaxCheck
+    strategy:
+      matrix:
+        php:
+          -
+            version: '8.0'
+            experimental: false
+          -
+            version: '8.1'
+            experimental: false
+          -
+            version: '8.2'
+            experimental: false
+          -
+            version: '8.3'
+            experimental: true
+    runs-on: ubuntu-22.04
+    steps:
+      -
+        uses: actions/checkout@v3
+      -
+        name: 'Set up PHP ${{ matrix.php.version }}'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '${{ matrix.php.version }}'
+      -
+        name: 'Install Composer dependencies'
+        run: 'composer install'
+      -
+        name: 'Run unit test'
+        continue-on-error: '${{ matrix.php.experimental }}'
+        run: 'vendor/bin/phpunit --group=japanese,recaptcha,sns,url,zengin'
