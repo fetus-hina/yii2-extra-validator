@@ -1,18 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators\test;
 
-use Yii;
-use yii\base\DynamicModel;
 use jp3cki\yii2\validators\ZenginNameValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
+use yii\base\DynamicModel;
+
+use function array_merge;
+use function mb_convert_encoding;
 
 /**
  * @group zengin
  */
 class ZenginNameValidatorTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->mockApplication();
@@ -38,7 +42,7 @@ class ZenginNameValidatorTest extends TestCase
             ['value' => $value],
             [
                 [['value'], Target::className(), 'charset' => $charset],
-            ]
+            ],
         );
         $this->assertEquals($expected, !$model->hasErrors());
     }
@@ -46,20 +50,20 @@ class ZenginNameValidatorTest extends TestCase
     public function dataProvider()
     {
         $set = [
-            [true,  'ｱｲｻﾞﾜ ﾋﾅ', null],
+            [true, 'ｱｲｻﾞﾜ ﾋﾅ', null],
             [false, 'アイザワヒナ', null],
-            [true,  'ｸﾛｴ ﾙﾒ-ﾙ', null], // ハイフン
+            [true, 'ｸﾛｴ ﾙﾒ-ﾙ', null], // ハイフン
             [false, 'ｸﾛｴ ﾙﾒｰﾙ', null], // 長音は使えない
-            [true,  'ｶ)ﾆﾎﾝ', null],
-            [true,  'ﾆﾎﾝ(ｶ)ｼﾝｼﾞﾕｸ(ｴｲ', null],
-            [true,  'ﾆﾎﾝ(ｶ', null],
-            [true,  'ﾈﾂﾄ.ｾﾝﾀ-', null],
+            [true, 'ｶ)ﾆﾎﾝ', null],
+            [true, 'ﾆﾎﾝ(ｶ)ｼﾝｼﾞﾕｸ(ｴｲ', null],
+            [true, 'ﾆﾎﾝ(ｶ', null],
+            [true, 'ﾈﾂﾄ.ｾﾝﾀ-', null],
             [false, 'ﾈﾂﾄ･ｾﾝﾀ-', null],
             [false, 'ﾈｯﾄ.ｾﾝﾀ-', null],
-            [true,  'ABCDEFG', null],
+            [true, 'ABCDEFG', null],
             [false, 'abcdefg', null],
-            [true,  '1234567', null],
-            [true,  '\\,.｢｣()-/', null],
+            [true, '1234567', null],
+            [true, '\\,.｢｣()-/', null],
             [false, '!"#$%&', null],
         ];
         $convCharset = function (array $arrayArray, $charset) {
@@ -73,7 +77,7 @@ class ZenginNameValidatorTest extends TestCase
             $set,
             $convCharset($set, 'UTF-8'),
             $convCharset($set, 'CP932'),
-            $convCharset($set, 'EUCJP-WIN')
+            $convCharset($set, 'EUCJP-WIN'),
         );
     }
 }

@@ -12,11 +12,12 @@ test: vendor check-style
 .PHONY: check-style
 check-style: vendor
 	find . \( -type d \( -name '.git' -or -name 'vendor' -or -name 'runtime' \) -prune \) -or \( -type f -name '*.php' -print \) | xargs -n 1 php -l
-	vendor/bin/phpcs --standard=PSR12 src test
+	vendor/bin/phpcs src test
+	vendor/bin/phpstan --memory-limit=1G
 
 .PHONY: fix-style
 fix-style: vendor
-	vendor/bin/phpcbf --standard=PSR12 src test
+	vendor/bin/phpcbf src test
 
 .PHONY: clean
 clean:

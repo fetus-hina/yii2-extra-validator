@@ -1,18 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators\test;
 
-use Yii;
-use jp3cki\yii2\validators\IdnToPunycodeFilterValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 use jp3cki\yii2\validators\testsrc\models\ModelForIdnToPunycodeFilterValidator as TestModel;
+
+use function array_map;
+use function array_merge;
 
 /**
  * @group url
  */
 class IdnToPunycodeFilterValidatorTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->mockApplication();
@@ -30,7 +33,6 @@ class IdnToPunycodeFilterValidatorTest extends TestCase
         $this->assertEquals($ascii, $o->value);
     }
 
-
     public function dataProvider()
     {
         $set = [
@@ -45,21 +47,13 @@ class IdnToPunycodeFilterValidatorTest extends TestCase
             // example.com
             $set,
             // http://example.com
-            array_map(function ($pair) {
-                return ['http://' . $pair[0], 'http://' . $pair[1]];
-            }, $set),
+            array_map(fn ($pair) => ['http://' . $pair[0], 'http://' . $pair[1]], $set),
             // https://example.com
-            array_map(function ($pair) {
-                return ['https://' . $pair[0], 'https://' . $pair[1]];
-            }, $set),
+            array_map(fn ($pair) => ['https://' . $pair[0], 'https://' . $pair[1]], $set),
             // example.com/foo
-            array_map(function ($pair) {
-                return [$pair[0] . '/foo', $pair[1] . '/foo'];
-            }, $set),
+            array_map(fn ($pair) => [$pair[0] . '/foo', $pair[1] . '/foo'], $set),
             // //example.com/
-            array_map(function ($pair) {
-                return ['//' . $pair[0] . '/', '//' . $pair[1] . '/'];
-            }, $set)
+            array_map(fn ($pair) => ['//' . $pair[0] . '/', '//' . $pair[1] . '/'], $set),
         );
     }
 }

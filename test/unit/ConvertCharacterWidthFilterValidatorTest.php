@@ -1,18 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators\test;
 
-use Yii;
-use yii\base\DynamicModel;
 use jp3cki\yii2\validators\ConvertCharacterWidthFilterValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
+use yii\base\DynamicModel;
+
+use function array_merge;
+use function mb_convert_encoding;
 
 /**
  * @group japanese
  */
 class ConvertCharacterWidthFilterValidatorTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->mockApplication();
@@ -25,7 +29,7 @@ class ConvertCharacterWidthFilterValidatorTest extends TestCase
     {
         $model = DynamicModel::validateData(
             ['value' => $input],
-            [[['value'], Target::className(), 'charset' => $charset]]
+            [[['value'], Target::className(), 'charset' => $charset]],
         );
         $this->assertEquals($expected, $model->value);
     }
@@ -51,7 +55,7 @@ class ConvertCharacterWidthFilterValidatorTest extends TestCase
             $set,
             $convCharset($set, 'UTF-8'),
             $convCharset($set, 'CP932'),
-            $convCharset($set, 'EUCJP-WIN')
+            $convCharset($set, 'EUCJP-WIN'),
         );
     }
 }

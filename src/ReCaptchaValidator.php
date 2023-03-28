@@ -6,26 +6,31 @@
  * @license https://github.com/fetus-hina/yii2-extra-validator/blob/master/LICENSE MIT
  */
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators;
 
-use Curl\Curl;
-use Exception;
+use Throwable;
 use Yii;
-use stdClass;
+use jp3cki\yii2\validators\internal\UserAgent;
+use yii\httpclient\Client as HttpClient;
 use yii\validators\Validator;
+
+use function is_array;
 
 /**
  * Validates ReCAPTCHA 2.0 input
  */
 class ReCaptchaValidator extends Validator
 {
-    public $endPoint = 'https://www.google.com/recaptcha/api/siteverify';
-    public $secret;
-    public $remoteIp;
-    public $userAgent;
+    public string $endPoint = 'https://www.google.com/recaptcha/api/siteverify';
+    public ?string $secret = null;
+    public ?string $remoteIp = null;
+    public ?string $userAgent = null;
 
     /**
      * @inheritdoc
+     * @return void
      */
     public function init()
     {
@@ -33,13 +38,15 @@ class ReCaptchaValidator extends Validator
         if ($this->message === null) {
             $this->message = Yii::t('jp3ckivalidator', 'Please comfirm the reCAPTCHA.');
         }
+
         if ($this->userAgent === null) {
-            $this->userAgent = internal\UserAgent::make(get_class());
+            $this->userAgent = UserAgent::make(static::class);
         }
     }
 
     /**
      * @inheritdoc
+     * @return void
      */
     public function validateAttribute($model, $attribute)
     {
@@ -50,26 +57,43 @@ class ReCaptchaValidator extends Validator
         if ($this->remoteIp) {
             $params['remoteip'] = (string)$this->remoteIp;
         }
+
         if (!$this->verify($params)) {
-            $this->addError($model, $attribute, $this->message);
+            $this->addError($model, $attribute, (string)$this->message);
         }
     }
 
-    private function verify(array $params)
+    /**
+     * @param array<string, string> $params
+     */
+    private function verify(array $params): bool
     {
         try {
-            $curl = new Curl();
-            $curl->setUserAgent($this->userAgent);
-            $ret = $curl->post($this->endPoint, $params);
-            if ($curl->error) {
+            $client = Yii::createObject([
+                'class' => HttpClient::class,
+                'responseConfig' => [
+                    'format' => HttpClient::FORMAT_JSON,
+                ],
+            ]);
+            $response = $client->createRequest()
+                ->setMethod('POST')
+                ->setUrl($this->endPoint)
+                ->addHeaders([
+                    'User-Agent' => (string)$this->userAgent,
+                ])
+                ->setData($params)
+                ->send();
+
+            if (!$response->isOk) {
                 return false;
             }
-            if (($ret instanceof stdClass) && isset($ret->success) && $ret->success === true) {
-                return true;
-            }
-        } catch (Exception $e) {
+
+            $data = $response->data;
+            return is_array($data) && ($data['success'] ?? false) === true;
+        } catch (Throwable $e) {
             // do nothing
         }
+
         return false;
     }
 }

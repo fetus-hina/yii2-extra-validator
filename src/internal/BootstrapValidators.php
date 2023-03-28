@@ -7,14 +7,18 @@
  * @since 1.0.0
  */
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators\internal;
 
 use Yii;
-use yii\base\Application;
 use yii\base\BootstrapInterface;
 
-class Bootstrap implements BootstrapInterface
+class BootstrapValidators implements BootstrapInterface
 {
+    /**
+     * @return void
+     */
     public function bootstrap($app)
     {
         Yii::setAlias('@jp3ckivalidatormessages', __DIR__ . '/../../messages');

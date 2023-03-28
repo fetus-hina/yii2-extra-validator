@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators\testsrc\models;
 
-use yii\base\Model;
 use jp3cki\yii2\validators\AvailableUrlValidator;
+use yii\base\Model;
 
 class ModelForAvailableUrlValidator extends Model
 {
@@ -12,7 +14,7 @@ class ModelForAvailableUrlValidator extends Model
     public function rules()
     {
         return [
-            [['value'], AvailableUrlValidator::className()]
+            [['value'], AvailableUrlValidator::className()],
         ];
     }
 }

@@ -11,17 +11,19 @@
         }
     ],
     "require": {
-        "php": ">= 7.1.0",
+        "php": ">= 8.0",
         "ext-intl": "*",
         "ext-mbstring": "*",
         "ext-pcre": "*",
-        "jp3cki/mb_str_replace": "^4.0",
-        "php-curl-class/php-curl-class": "^8.6.1",
-        "yiisoft/yii2": "~2.0"
+        "jp3cki/mb_str_replace": "*",
+        "yiisoft/yii2": "~2.0",
+        "yiisoft/yii2-httpclient": "^2.0"
     },
     "require-dev": {
+        "jp3cki/coding-standard": "*",
         "phpunit/phpunit": "*",
-        "squizlabs/php_codesniffer": "^3.5.2"
+        "proget-hq/phpstan-yii2": "~0.8.0",
+        "squizlabs/php_codesniffer": "^3.6"
     },
     "autoload": {
         "psr-4": {
@@ -30,11 +32,21 @@
         }
     },
     "extra": {
-        "bootstrap": "jp3cki\\yii2\\validators\\internal\\Bootstrap"
+        "bootstrap": "jp3cki\\yii2\\validators\\internal\\BootstrapValidators"
     },
     "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "yiisoft/yii2-composer": true
+        },
         "platform": {
-            "php": "7.1.33"
+            "php": "8.0.28"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
 }

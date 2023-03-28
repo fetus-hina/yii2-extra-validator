@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators\testsrc\models;
 
-use yii\base\Model;
 use jp3cki\yii2\validators\TwitterAccountValidator;
+use yii\base\Model;
 
 class ModelForTwitterAccountValidator extends Model
 {

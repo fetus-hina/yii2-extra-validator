@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators\test;
 
 use Yii;
@@ -7,12 +9,14 @@ use jp3cki\yii2\validators\ReCaptchaValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 use jp3cki\yii2\validators\testsrc\models\ModelForReCaptchaValidator as TestModel;
 
+use function count;
+
 /**
  * @group recaptcha
  */
 class ReCaptchaValidatorTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->mockApplication();
@@ -80,6 +84,6 @@ class ReCaptchaValidatorTest extends TestCase
         $this->assertFalse($o->validate());
         $this->assertGreaterThan(0, count($o->errors['value']));
         $this->assertNotEmpty($o->errors['value']);
-        $this->assertRegExp('/[ぁ-ゟ゠-ヿ]/u', $o->errors['value'][0]); // ひらがな・カタカナを含む
+        $this->assertMatchesRegularExpression('/[ぁ-ゟ゠-ヿ]/u', $o->errors['value'][0]); // ひらがな・カタカナを含む
     }
 }

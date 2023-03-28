@@ -7,6 +7,8 @@
  * @since 1.1.0
  */
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators;
 
 use Yii;
@@ -20,7 +22,7 @@ use Yii;
 class ZenginNameValidator extends internal\CharacterSequenceValidator
 {
     /** @internal This property does not work */
-    public $acceptSpace = null;
+    public bool $acceptSpace = true;
 
     /**
      * @inheritdoc
@@ -33,7 +35,7 @@ class ZenginNameValidator extends internal\CharacterSequenceValidator
         }
     }
 
-    protected function makeRegex()
+    protected function makeRegex(): string
     {
         return '/^[' .
                 '0-9A-Z' .

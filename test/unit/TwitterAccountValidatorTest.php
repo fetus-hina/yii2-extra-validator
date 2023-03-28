@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators\test;
 
 use Yii;
@@ -7,12 +9,15 @@ use jp3cki\yii2\validators\TwitterAccountValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 use jp3cki\yii2\validators\testsrc\models\ModelForTwitterAccountValidator as TestModel;
 
+use function count;
+use function is_array;
+
 /**
  * @group sns
  */
 class TwitterAccountValidatorTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->mockApplication();
@@ -62,7 +67,7 @@ class TwitterAccountValidatorTest extends TestCase
         $error = null;
         $this->assertEquals($expect, $o->validate($screenName, $error));
         if ($expect === false) {
-            $this->assertRegExp('/^[\x20-\x7e]+$/', $error);
+            $this->assertMatchesRegularExpression('/^[\x20-\x7e]+$/', $error);
         }
     }
 
@@ -77,7 +82,7 @@ class TwitterAccountValidatorTest extends TestCase
         $error = null;
         $this->assertEquals($expect, $o->validate($screenName, $error));
         if ($expect === false) {
-            $this->assertRegExp('/[ぁ-ゟ゠-ヿ]/u', $error); // ひらがな・カタカナを含む
+            $this->assertMatchesRegularExpression('/[ぁ-ゟ゠-ヿ]/u', $error); // ひらがな・カタカナを含む
         }
     }
 
@@ -91,7 +96,7 @@ class TwitterAccountValidatorTest extends TestCase
         $o->value = $screenName;
         $this->assertEquals($expect, $o->validate());
         if ($expect === false) {
-            $this->assertRegExp('/^[\x20-\x7e]+$/', $o->errors['value'][0]);
+            $this->assertMatchesRegularExpression('/^[\x20-\x7e]+$/', $o->errors['value'][0]);
         }
     }
 
@@ -106,7 +111,7 @@ class TwitterAccountValidatorTest extends TestCase
         $o->value = $screenName;
         $this->assertEquals($expect, $o->validate());
         if ($expect === false) {
-            $this->assertRegExp('/[ぁ-ゟ゠-ヿ]/u', $o->errors['value'][0]); // ひらがな・カタカナを含む
+            $this->assertMatchesRegularExpression('/[ぁ-ゟ゠-ヿ]/u', $o->errors['value'][0]); // ひらがな・カタカナを含む
         }
     }
 

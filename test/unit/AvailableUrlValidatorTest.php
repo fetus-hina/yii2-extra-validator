@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators\test;
 
 use Yii;
@@ -7,12 +9,14 @@ use jp3cki\yii2\validators\AvailableUrlValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 use jp3cki\yii2\validators\testsrc\models\ModelForAvailableUrlValidator as TestModel;
 
+use function count;
+
 /**
  * @group url
  */
 class AvailableUrlValidatorTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->mockApplication();
@@ -68,7 +72,7 @@ class AvailableUrlValidatorTest extends TestCase
         $error = null;
         $this->assertFalse($o->validate('https://unknownhost.fetus.jp/', $error));
         $this->assertNotEmpty($error);
-        $this->assertRegExp('/[ぁ-ゟ゠-ヿ]/u', $error); // ひらがな・カタカナを含む
+        $this->assertMatchesRegularExpression('/[ぁ-ゟ゠-ヿ]/u', $error); // ひらがな・カタカナを含む
 
         $o = new TestModel();
         $o->init();
@@ -76,6 +80,6 @@ class AvailableUrlValidatorTest extends TestCase
         $this->assertFalse($o->validate());
         $this->assertGreaterThan(0, count($o->errors['value']));
         $this->assertNotEmpty($o->errors['value']);
-        $this->assertRegExp('/[ぁ-ゟ゠-ヿ]/u', $o->errors['value'][0]); // ひらがな・カタカナを含む
+        $this->assertMatchesRegularExpression('/[ぁ-ゟ゠-ヿ]/u', $o->errors['value'][0]); // ひらがな・カタカナを含む
     }
 }

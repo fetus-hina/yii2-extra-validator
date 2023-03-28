@@ -1,18 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators\test;
 
-use Yii;
-use yii\base\DynamicModel;
 use jp3cki\yii2\validators\ZenginNameFilterValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
+use yii\base\DynamicModel;
+
+use function array_merge;
+use function mb_convert_encoding;
 
 /**
  * @group zengin
  */
 class ZenginNameFilterValidatorTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->mockApplication();
@@ -27,11 +31,10 @@ class ZenginNameFilterValidatorTest extends TestCase
             ['value' => $value],
             [
                 [['value'], Target::className(), 'charset' => $charset],
-            ]
+            ],
         );
         $this->assertEquals($expected, $model->value);
     }
-
 
     public function dataProvider()
     {
@@ -58,7 +61,7 @@ class ZenginNameFilterValidatorTest extends TestCase
             $set,
             $convCharset($set, 'UTF-8'),
             $convCharset($set, 'CP932'),
-            $convCharset($set, 'EUCJP-WIN')
+            $convCharset($set, 'EUCJP-WIN'),
         );
     }
 }

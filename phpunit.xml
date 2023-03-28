@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
-    bootstrap="vendor/yiisoft/yii2/Yii.php"
-    convertErrorsToExceptions="true"
-    convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
-    stopOnFailure="false">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/yiisoft/yii2/Yii.php" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage>
+    <include>
+      <directory>./src</directory>
+      <directory>./test</directory>
+    </include>
+  </coverage>
   <testsuites>
     <testsuite name="The Test Suite">
       <directory>./test</directory>
     </testsuite>
   </testsuites>
-  <filter>
-    <whitelist>
-      <directory>./src</directory>
-      <directory>./test</directory>
-    </whitelist>
-  </filter>
 </phpunit>

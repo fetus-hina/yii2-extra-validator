@@ -7,11 +7,16 @@
  * @since 1.0.1
  */
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators;
 
 use yii\validators\FilterValidator;
 
 use function idn_to_ascii;
+use function preg_replace_callback;
+use function strpos;
+use function strtolower;
 
 use const INTL_IDNA_VARIANT_UTS46;
 
@@ -20,7 +25,10 @@ use const INTL_IDNA_VARIANT_UTS46;
  */
 class IdnToPunycodeFilterValidator extends FilterValidator
 {
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     * @return void
+     */
     public function init()
     {
         $this->filter = function (string $value): string {
@@ -29,23 +37,19 @@ class IdnToPunycodeFilterValidator extends FilterValidator
             }
 
             if (strpos($value, '//') !== false) {
-                return preg_replace_callback(
+                return (string)preg_replace_callback(
                     '!(?<=//)([^/:]+)!',
-                    function (array $match): string {
-                        return strtolower(static::idnToAscii($match[1]));
-                    },
+                    fn (array $match): string => strtolower(static::idnToAscii($match[1])),
                     $value,
-                    1
+                    1,
                 );
             }
 
-            return preg_replace_callback(
+            return (string)preg_replace_callback(
                 '!^([^/:]+)!',
-                function (array $match): string {
-                    return strtolower(static::idnToAscii($match[1]));
-                },
+                fn (array $match): string => strtolower(static::idnToAscii($match[1])),
                 $value,
-                1
+                1,
             );
         };
         parent::init();
@@ -53,6 +57,6 @@ class IdnToPunycodeFilterValidator extends FilterValidator
 
     protected static function idnToAscii(string $value): string
     {
-        return idn_to_ascii($value, 0, INTL_IDNA_VARIANT_UTS46);
+        return (string)idn_to_ascii($value, 0, INTL_IDNA_VARIANT_UTS46);
     }
 }

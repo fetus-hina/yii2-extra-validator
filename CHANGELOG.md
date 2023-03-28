@@ -94,3 +94,9 @@ CHANGELOG
 
 * *ALMOST* it has backward compatibility.
 * Minimum requirements updated to PHP 7.1
+
+4.0.0
+-----
+
+* *ALMOST* it has backward compatibility.
+* Minimum requirements updated to PHP 8.0

@@ -1,10 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators\testsrc;
 
 use Yii;
-use yii\base\NotSupprtException;
+use jp3cki\yii2\validators\internal\BootstrapValidators;
 use yii\helpers\ArrayHelper;
+
+use function file_exists;
+use function gc_collect_cycles;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -13,11 +18,11 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $vendorDir = __DIR__ . '/../../vendor';
         $vendorAutoload = $vendorDir . '/autoload.php';
         if (file_exists($vendorAutoload)) {
-            require_once($vendorAutoload);
+            require_once $vendorAutoload;
         } else {
             throw new NotSupportedException("Vendor autoload file '{$vendorAutoload}' is missing.");
         }
-        require_once($vendorDir . '/yiisoft/yii2/Yii.php');
+        require_once $vendorDir . '/yiisoft/yii2/Yii.php';
         Yii::setAlias('@vendor', $vendorDir);
     }
 
@@ -37,10 +42,10 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
                 'vendorPath' => __DIR__ . '/../../vendor',
                 'language' => $language,
                 'bootstrap' => [
-                    'jp3cki\yii2\validators\internal\Bootstrap',
+                    BootstrapValidators::class,
                 ],
             ],
-            $config
+            $config,
         ));
     }
 

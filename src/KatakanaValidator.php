@@ -7,6 +7,8 @@
  * @since 1.0.2
  */
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators;
 
 use Yii;
@@ -29,7 +31,7 @@ class KatakanaValidator extends internal\CharacterSequenceValidator
         }
     }
 
-    protected function makeRegex()
+    protected function makeRegex(): string
     {
         // Katakana range: U+30A0(゠:人名等に使用する区切り)..U+30FF(ヿ:コト)
         return $this->acceptSpace ? '/^[゠-ヿ　[:space:]]*$/u' : '/^[゠-ヿ]*$/u';

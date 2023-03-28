@@ -7,10 +7,14 @@
  * @since 1.0.2
  */
 
+declare(strict_types=1);
+
 namespace jp3cki\yii2\validators;
 
 use Yii;
 use yii\validators\FilterValidator;
+
+use function mb_convert_kana;
 
 /**
  * The filter validator which converts character-width
@@ -25,15 +29,16 @@ class ConvertCharacterWidthFilterValidator extends FilterValidator
     /** @var string Charset that used for converting. default: Yii::$app->charset */
     public $charset;
 
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     * @return void
+     */
     public function init()
     {
         if ($this->charset === null) {
             $this->charset = Yii::$app->charset;
         }
-        $this->filter = function ($value) {
-            return mb_convert_kana($value, $this->option, $this->charset);
-        };
+        $this->filter = fn ($value) => mb_convert_kana($value, $this->option, $this->charset);
         parent::init();
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ruleset name="Custom Standard">
+  <description>A custom coding standard</description>
+
+  <ini name="memory_limit" value="-1" />
+  <arg name="extensions" value="php" />
+  <arg value="p" />
+  <arg value="s" />
+
+  <file>.</file>
+  <exclude-pattern>./runtime/*</exclude-pattern>
+  <exclude-pattern>./vendor/*</exclude-pattern>
+
+  <rule ref="JP3CKI">
+    <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingAnyTypeHint"/>
+    <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint"/>
+    <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint"/>
+  </rule>
+</ruleset>
