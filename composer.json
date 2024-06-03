@@ -15,15 +15,15 @@
         "ext-intl": "*",
         "ext-mbstring": "*",
         "ext-pcre": "*",
-        "jp3cki/mb_str_replace": "*",
-        "yiisoft/yii2": "~2.0",
-        "yiisoft/yii2-httpclient": "^2.0"
+        "jp3cki/mb_str_replace": "^4.0.2",
+        "yiisoft/yii2": "^2.0.50",
+        "yiisoft/yii2-httpclient": "^2.0.15"
     },
     "require-dev": {
-        "jp3cki/coding-standard": "*",
-        "phpunit/phpunit": "*",
+        "jp3cki/coding-standard": ">=0.1.4",
+        "phpunit/phpunit": ">=9.6.19",
         "proget-hq/phpstan-yii2": "~0.8.0",
-        "squizlabs/php_codesniffer": "^3.6"
+        "squizlabs/php_codesniffer": "^3.10.1"
     },
     "autoload": {
         "psr-4": {

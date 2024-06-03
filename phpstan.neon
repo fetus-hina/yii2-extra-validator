@@ -4,8 +4,9 @@ includes:
 parameters:
   level: max
 
-  checkGenericClassInNonGenericObjectType: false
-  checkMissingIterableValueType: false
+  ignoreErrors:
+    - identifier: missingType.iterableValue
+
   treatPhpDocTypesAsCertain: false
 
   paths:
