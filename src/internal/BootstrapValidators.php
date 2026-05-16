@@ -2,7 +2,7 @@
 
 /**
  * @author AIZAWA Hina <hina@fetus.jp>
- * @copyright 2015-2019 by AIZAWA Hina <hina@fetus.jp>
+ * @copyright 2015-2026 by AIZAWA Hina <hina@fetus.jp>
  * @license https://github.com/fetus-hina/yii2-extra-validator/blob/master/LICENSE MIT
  * @since 1.0.0
  */
