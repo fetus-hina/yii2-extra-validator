@@ -7,7 +7,7 @@ yii2-extra-validator
 Requirements
 ------------
 
-- PHP 8.0 or later
+- PHP 8.2 or later
 - Yii framework 2.0
 - Some php extensions is required:
   - PCRE extension (also required by Yii)
@@ -58,8 +58,8 @@ class YourCustomForm extends Model
     {
         return [
             [['url'], 'url', 'enableIDN' => true], // <- Core validator
-            // [['url'], StrictUrlValidator::className(), 'enableIDN' => true]
-            [['url'], AvailableUrlValidator::className()],
+            // [['url'], StrictUrlValidator::class, 'enableIDN' => true]
+            [['url'], AvailableUrlValidator::class],
         ];
     }
 }
@@ -90,9 +90,9 @@ class YourCustomForm extends Model
     public function rules()
     {
         return [
-            [['value'], ConvertCharacterWidthFilterValidator::className(),
+            [['value'], ConvertCharacterWidthFilterValidator::class,
                 'option' => 'asKV', // mb_convert_kana() 関数の変換書式を指定します。デフォルトは asKV です。
-                'charset' => 'UTF-8', // 必要であれば文字コードを指定します。デフォルトは Yii::app()->charset で、通常 UTF-8 です。
+                'charset' => 'UTF-8', // 必要であれば文字コードを指定します。デフォルトは Yii::$app->charset で、通常 UTF-8 です。
             ],
         ];
     }
@@ -122,9 +122,9 @@ class YourCustomForm extends Model
     public function rules()
     {
         return [
-            [['value'], HiraganaValidator::className(),
+            [['value'], HiraganaValidator::class,
                 'acceptSpace' => false,  // スペース（半角・全角）を許容する場合は true を設定します。デフォルトは false です。
-                'charset' => 'UTF-8', // 必要であれば文字コードを指定します。デフォルトは Yii::app()->charset で、通常 UTF-8 です。
+                'charset' => 'UTF-8', // 必要であれば文字コードを指定します。デフォルトは Yii::$app->charset で、通常 UTF-8 です。
             ],
         ];
     }
@@ -154,8 +154,8 @@ class YourCustomForm extends Model
     {
         return [
             [['url'], 'url', 'enableIDN' => true], // <- Core validator
-            // [['url'], StrictUrlValidator::className(), 'enableIDN' => true]
-            [['url'], IdnToPunycodeFilterValidator::className()],
+            // [['url'], StrictUrlValidator::class, 'enableIDN' => true]
+            [['url'], IdnToPunycodeFilterValidator::class],
         ];
     }
 }
@@ -199,9 +199,9 @@ class YourCustomForm extends Model
     public function rules()
     {
         return [
-            [['value'], KatakanaValidator::className(),
+            [['value'], KatakanaValidator::class,
                 'acceptSpace' => false,  // スペース（半角・全角）を許容する場合は true を設定します。デフォルトは false です。
-                'charset' => 'UTF-8', // 必要であれば文字コードを指定します。デフォルトは Yii::app()->charset で、通常 UTF-8 です。
+                'charset' => 'UTF-8', // 必要であれば文字コードを指定します。デフォルトは Yii::$app->charset で、通常 UTF-8 です。
             ],
         ];
     }
@@ -246,7 +246,7 @@ class ReCaptchaForm extends Model
     public function rules()
     {
         return [
-            [['recaptcha'], ReCaptchaValidator::className(),
+            [['recaptcha'], ReCaptchaValidator::class,
                 'secret' => Yii::$app->params['recaptchaSecret']], // <- set SECRET KEY to the validator
         ];
     }
@@ -301,7 +301,7 @@ class YourCustomForm extends Model
     public function rules()
     {
         return [
-            [['url'], StrictUrlValidator::className(), 'enableIDN' => true]
+            [['url'], StrictUrlValidator::class, 'enableIDN' => true]
         ];
     }
 }
@@ -330,7 +330,7 @@ class YourCustomForm extends Model
     public function rules()
     {
         return [
-            [['screenName'], TwitterAccountValidator::className()],
+            [['screenName'], TwitterAccountValidator::class],
         ];
     }
 
@@ -377,8 +377,8 @@ class YourCustomForm extends Model
     {
         return [
             // [['accountName'], 'required'],
-            [['accountName'], ZenginNameFilterValidator::className()],
-            [['accountName'], ZenginNameValidator::className()],
+            [['accountName'], ZenginNameFilterValidator::class],
+            [['accountName'], ZenginNameValidator::class],
             // [['accountName'], 'string', 'max' => 30],
         ];
     }
@@ -401,7 +401,7 @@ License
 ```
 The MIT License (MIT)
 
-Copyright (c) 2015-2023 AIZAWA Hina <hina@fetus.jp>
+Copyright (c) 2015-2026 AIZAWA Hina <hina@fetus.jp>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -429,11 +429,11 @@ Patches and/or report issues are welcome.
 
 - Please create new branch for each issue or feature. (should not work in master branch)
 - Please write and run test. `$ make test`
-- Coding style is PSR-2.
+- Coding style is PSR-12.
     - Please run check-style for static code analysis and coding rule checking. `$ make check-style`
 - Please clean up commits.
 - Please create new pull-request for each issue or feature.
-- Please gazing the results of Travis-CI and other hooks.
+- Please gazing the results of GitHub Actions and other hooks.
 - Please use Japanese or *very simple* English to create new pull-request or issue.
 
 I strongly hope rewrite my poor English.
