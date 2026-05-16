@@ -14,7 +14,7 @@ class ModelForAvailableUrlValidator extends Model
     public function rules()
     {
         return [
-            [['value'], AvailableUrlValidator::className()],
+            [['value'], AvailableUrlValidator::class],
         ];
     }
 }

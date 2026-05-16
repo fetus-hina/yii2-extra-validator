@@ -14,17 +14,17 @@ class ModelForReCaptchaValidator extends Model
     public function rules()
     {
         return [
-            [['value'], ReCaptchaValidator::className(), 'on' => 'successfulTest',
+            [['value'], ReCaptchaValidator::class, 'on' => 'successfulTest',
                 'endPoint' => 'https://mock.fetus.jp/recaptcha/api/siteverify.success.json',
                 'secret' => 'SECRET KEY',
                 'remoteIp' => '127.0.0.2',
             ],
-            [['value'], ReCaptchaValidator::className(), 'on' => 'failureTest',
+            [['value'], ReCaptchaValidator::class, 'on' => 'failureTest',
                 'endPoint' => 'https://mock.fetus.jp/recaptcha/api/siteverify.error.json',
                 'secret' => 'SECRET KEY',
                 'remoteIp' => '127.0.0.2',
             ],
-            [['value'], ReCaptchaValidator::className(), 'on' => 'networkFailureTest',
+            [['value'], ReCaptchaValidator::class, 'on' => 'networkFailureTest',
                 'endPoint' => 'https://unknownhost.fetus.jp/',
                 'secret' => 'SECRET KEY',
                 'remoteIp' => '127.0.0.2',

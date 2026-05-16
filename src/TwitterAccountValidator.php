@@ -25,7 +25,21 @@ use function strtolower;
  */
 class TwitterAccountValidator extends Validator
 {
-    /** @var string[]|null list of account-like string which user cannot use */
+    private const DEFAULT_NON_USERNAME_PATHS = [
+        'about', 'account', 'accounts', 'activity', 'all', 'announcements', 'anywhere', 'api_rules',
+        'api_terms', 'apirules', 'apps', 'auth', 'badges', 'blog', 'business', 'buttons', 'contacts',
+        'devices', 'direct_messages', 'download', 'downloads', 'edit_announcements', 'faq', 'favorites',
+        'find_sources', 'find_users', 'followers', 'following', 'friend_request', 'friendrequest', 'friends',
+        'goodies', 'help', 'home', 'i', 'im_account', 'inbox', 'invitations', 'invite', 'jobs', 'list',
+        'login', 'logo', 'logout', 'me', 'mentions', 'messages', 'mockview', 'newtwitter', 'notifications',
+        'nudge', 'oauth', 'phoenix_search', 'positions', 'privacy', 'public_timeline', 'related_tweets',
+        'replies', 'retweeted_of_mine', 'retweets', 'retweets_by_others', 'rules', 'saved_searches', 'search',
+        'sent', 'sessions', 'settings', 'share', 'signup', 'signin', 'similar_to', 'statistics', 'terms',
+        'tos', 'translate', 'trends', 'tweetbutton', 'twttr', 'update_discoverability', 'users', 'welcome',
+        'who_to_follow', 'widgets', 'zendesk_auth', 'media_signup',
+    ];
+
+    /** @var list<string>|null list of account-like string which user cannot use */
     public ?array $nonUsernamePaths = null;
 
     /**
@@ -40,19 +54,7 @@ class TwitterAccountValidator extends Validator
         }
 
         if (!is_array($this->nonUsernamePaths)) {
-            $this->nonUsernamePaths = [
-                'about', 'account', 'accounts', 'activity', 'all', 'announcements', 'anywhere', 'api_rules',
-                'api_terms', 'apirules', 'apps', 'auth', 'badges', 'blog', 'business', 'buttons', 'contacts',
-                'devices', 'direct_messages', 'download', 'downloads', 'edit_announcements', 'faq', 'favorites',
-                'find_sources', 'find_users', 'followers', 'following', 'friend_request', 'friendrequest', 'friends',
-                'goodies', 'help', 'home', 'i', 'im_account', 'inbox', 'invitations', 'invite', 'jobs', 'list',
-                'login', 'logo', 'logout', 'me', 'mentions', 'messages', 'mockview', 'newtwitter', 'notifications',
-                'nudge', 'oauth', 'phoenix_search', 'positions', 'privacy', 'public_timeline', 'related_tweets',
-                'replies', 'retweeted_of_mine', 'retweets', 'retweets_by_others', 'rules', 'saved_searches', 'search',
-                'sent', 'sessions', 'settings', 'share', 'signup', 'signin', 'similar_to', 'statistics', 'terms',
-                'tos', 'translate', 'trends', 'tweetbutton', 'twttr', 'update_discoverability', 'users', 'welcome',
-                'who_to_follow', 'widgets', 'zendesk_auth', 'media_signup',
-            ];
+            $this->nonUsernamePaths = self::DEFAULT_NON_USERNAME_PATHS;
         }
     }
 
@@ -70,7 +72,7 @@ class TwitterAccountValidator extends Validator
 
     /**
      * @inheritdoc
-     * @return array{string, array}|null
+     * @return array{string, array<string, mixed>}|null
      */
     protected function validateValue($value)
     {

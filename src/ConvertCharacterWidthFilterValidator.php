@@ -24,10 +24,10 @@ use function mb_convert_kana;
 class ConvertCharacterWidthFilterValidator extends FilterValidator
 {
     /** @var string Convert option. See mb_convert_kana manual. */
-    public $option = 'asKV';
+    public string $option = 'asKV';
 
-    /** @var string Charset that used for converting. default: Yii::$app->charset */
-    public $charset;
+    /** @var string|null Charset that used for converting. default: Yii::$app->charset */
+    public ?string $charset = null;
 
     /**
      * @inheritdoc

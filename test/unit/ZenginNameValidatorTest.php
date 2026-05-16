@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators\test;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use jp3cki\yii2\validators\ZenginNameValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 use yii\base\DynamicModel;
@@ -11,9 +13,7 @@ use yii\base\DynamicModel;
 use function array_merge;
 use function mb_convert_encoding;
 
-/**
- * @group zengin
- */
+#[Group('zengin')]
 class ZenginNameValidatorTest extends TestCase
 {
     public function setUp(): void
@@ -22,9 +22,7 @@ class ZenginNameValidatorTest extends TestCase
         $this->mockApplication();
     }
 
-    /**
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testValidator($expected, $value, $charset)
     {
         $o = new Target();
@@ -33,15 +31,13 @@ class ZenginNameValidatorTest extends TestCase
         $this->assertEquals($expected, $o->validate($value));
     }
 
-    /**
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testWithModel($expected, $value, $charset)
     {
         $model = DynamicModel::validateData(
             ['value' => $value],
             [
-                [['value'], Target::className(), 'charset' => $charset],
+                [['value'], Target::class, 'charset' => $charset],
             ],
         );
         $this->assertEquals($expected, !$model->hasErrors());

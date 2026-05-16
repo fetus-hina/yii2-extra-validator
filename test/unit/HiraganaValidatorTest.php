@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators\test;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use jp3cki\yii2\validators\HiraganaValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 use yii\base\DynamicModel;
@@ -11,9 +13,7 @@ use yii\base\DynamicModel;
 use function array_merge;
 use function mb_convert_encoding;
 
-/**
- * @group japanese
- */
+#[Group('japanese')]
 class HiraganaValidatorTest extends TestCase
 {
     public function setUp(): void
@@ -22,9 +22,7 @@ class HiraganaValidatorTest extends TestCase
         $this->mockApplication();
     }
 
-    /**
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testValidator($expected, $acceptSpace, $value, $charset)
     {
         $o = new Target();
@@ -34,15 +32,13 @@ class HiraganaValidatorTest extends TestCase
         $this->assertEquals($expected, $o->validate($value));
     }
 
-    /**
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testWithModel($expected, $acceptSpace, $value, $charset)
     {
         $model = DynamicModel::validateData(
             ['value' => $value],
             [
-                [['value'], Target::className(),
+                [['value'], Target::class,
                     'acceptSpace' => $acceptSpace,
                     'charset' => $charset,
                 ],

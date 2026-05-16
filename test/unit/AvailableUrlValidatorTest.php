@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators\test;
 
+use PHPUnit\Framework\Attributes\Group;
 use Yii;
 use jp3cki\yii2\validators\AvailableUrlValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
@@ -11,9 +12,7 @@ use jp3cki\yii2\validators\testsrc\models\ModelForAvailableUrlValidator as TestM
 
 use function count;
 
-/**
- * @group url
- */
+#[Group('url')]
 class AvailableUrlValidatorTest extends TestCase
 {
     public function setUp(): void

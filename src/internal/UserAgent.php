@@ -19,12 +19,12 @@ use const PHP_VERSION;
 /**
  * Helper class for making default user-agent string
  */
-class UserAgent
+final class UserAgent
 {
     /**
      * Make user-agent string
      *
-     * @param $className string FQCN of Caller
+     * @param string $className FQCN of Caller
      */
     public static function make(string $className): string
     {

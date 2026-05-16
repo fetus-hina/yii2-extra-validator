@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators\test;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use jp3cki\yii2\validators\ConvertCharacterWidthFilterValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 use yii\base\DynamicModel;
@@ -11,9 +13,7 @@ use yii\base\DynamicModel;
 use function array_merge;
 use function mb_convert_encoding;
 
-/**
- * @group japanese
- */
+#[Group('japanese')]
 class ConvertCharacterWidthFilterValidatorTest extends TestCase
 {
     public function setUp(): void
@@ -22,14 +22,12 @@ class ConvertCharacterWidthFilterValidatorTest extends TestCase
         $this->mockApplication();
     }
 
-    /**
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testFilter($expected, $input, $charset)
     {
         $model = DynamicModel::validateData(
             ['value' => $input],
-            [[['value'], Target::className(), 'charset' => $charset]],
+            [[['value'], Target::class, 'charset' => $charset]],
         );
         $this->assertEquals($expected, $model->value);
     }

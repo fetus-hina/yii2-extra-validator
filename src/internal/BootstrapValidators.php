@@ -14,7 +14,7 @@ namespace jp3cki\yii2\validators\internal;
 use Yii;
 use yii\base\BootstrapInterface;
 
-class BootstrapValidators implements BootstrapInterface
+final class BootstrapValidators implements BootstrapInterface
 {
     /**
      * @return void

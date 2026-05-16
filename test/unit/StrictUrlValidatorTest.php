@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators\test;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use jp3cki\yii2\validators\StrictUrlValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
 
-/**
- * @group url
- */
+#[Group('url')]
 class StrictUrlValidatorTest extends TestCase
 {
     public function setUp(): void
@@ -18,9 +18,7 @@ class StrictUrlValidatorTest extends TestCase
         $this->mockApplication();
     }
 
-    /**
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testValidator($expect, $idn, $url)
     {
         $o = new Target();

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators\test;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use jp3cki\yii2\validators\testsrc\TestCase;
 use jp3cki\yii2\validators\testsrc\models\ModelForIdnToPunycodeFilterValidator as TestModel;
 
 use function array_map;
 use function array_merge;
 
-/**
- * @group url
- */
+#[Group('url')]
 class IdnToPunycodeFilterValidatorTest extends TestCase
 {
     public function setUp(): void
@@ -21,9 +21,7 @@ class IdnToPunycodeFilterValidatorTest extends TestCase
         $this->mockApplication();
     }
 
-    /**
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testFilter($idn, $ascii)
     {
         $o = new TestModel();

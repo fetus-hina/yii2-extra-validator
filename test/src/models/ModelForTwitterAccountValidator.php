@@ -14,7 +14,7 @@ class ModelForTwitterAccountValidator extends Model
     public function rules()
     {
         return [
-            [['value'], TwitterAccountValidator::className(), 'skipOnEmpty' => false],
+            [['value'], TwitterAccountValidator::class, 'skipOnEmpty' => false],
         ];
     }
 }

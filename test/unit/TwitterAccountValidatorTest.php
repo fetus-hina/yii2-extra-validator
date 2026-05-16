@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators\test;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use Yii;
 use jp3cki\yii2\validators\TwitterAccountValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
@@ -12,9 +14,7 @@ use jp3cki\yii2\validators\testsrc\models\ModelForTwitterAccountValidator as Tes
 use function count;
 use function is_array;
 
-/**
- * @group sns
- */
+#[Group('sns')]
 class TwitterAccountValidatorTest extends TestCase
 {
     public function setUp(): void
@@ -57,9 +57,7 @@ class TwitterAccountValidatorTest extends TestCase
         $this->assertEquals(0, count($o->nonUsernamePaths));
     }
 
-    /**
-     * @dataProvider screenNamesProvider
-     */
+    #[DataProvider('screenNamesProvider')]
     public function testValidate($expect, $screenName)
     {
         $o = new Target();
@@ -71,9 +69,7 @@ class TwitterAccountValidatorTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider screenNamesProvider
-     */
+    #[DataProvider('screenNamesProvider')]
     public function testValidateJa($expect, $screenName)
     {
         Yii::$app->language = 'ja-JP';
@@ -86,9 +82,7 @@ class TwitterAccountValidatorTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider screenNamesProvider
-     */
+    #[DataProvider('screenNamesProvider')]
     public function testValidateAttribute($expect, $screenName)
     {
         $o = new TestModel();
@@ -100,9 +94,7 @@ class TwitterAccountValidatorTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider screenNamesProvider
-     */
+    #[DataProvider('screenNamesProvider')]
     public function testValidateAttributeJa($expect, $screenName)
     {
         Yii::$app->language = 'ja-JP';

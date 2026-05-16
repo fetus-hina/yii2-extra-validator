@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators\test;
 
+use PHPUnit\Framework\Attributes\Group;
 use Yii;
 use jp3cki\yii2\validators\ReCaptchaValidator as Target;
 use jp3cki\yii2\validators\testsrc\TestCase;
@@ -11,9 +12,7 @@ use jp3cki\yii2\validators\testsrc\models\ModelForReCaptchaValidator as TestMode
 
 use function count;
 
-/**
- * @group recaptcha
- */
+#[Group('recaptcha')]
 class ReCaptchaValidatorTest extends TestCase
 {
     public function setUp(): void

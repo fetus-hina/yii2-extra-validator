@@ -24,8 +24,8 @@ use function is_string;
  */
 class AvailableUrlValidator extends Validator
 {
-    /** @var string User-Agent string */
-    public $userAgent;
+    /** @var string|null User-Agent string */
+    public ?string $userAgent = null;
 
     /**
      * @inheritdoc

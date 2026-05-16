@@ -53,7 +53,7 @@ abstract class CharacterSequenceValidator extends Validator
 
     /**
      * @inheritdoc
-     * @return array{string, array}|null
+     * @return array{string, array<string, mixed>}|null
      */
     protected function validateValue($value)
     {

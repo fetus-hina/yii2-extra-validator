@@ -14,7 +14,7 @@ class ModelForIdnToPunycodeFilterValidator extends Model
     public function rules()
     {
         return [
-            [['value'], IdnToPunycodeFilterValidator::className()],
+            [['value'], IdnToPunycodeFilterValidator::class],
         ];
     }
 }

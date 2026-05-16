@@ -15,7 +15,7 @@ use yii\validators\FilterValidator;
 
 use function idn_to_ascii;
 use function preg_replace_callback;
-use function strpos;
+use function str_contains;
 use function strtolower;
 
 use const INTL_IDNA_VARIANT_UTS46;
@@ -32,11 +32,11 @@ class IdnToPunycodeFilterValidator extends FilterValidator
     public function init()
     {
         $this->filter = function (string $value): string {
-            if (strpos($value, '/') === false) {
+            if (!str_contains($value, '/')) {
                 return strtolower(static::idnToAscii($value));
             }
 
-            if (strpos($value, '//') !== false) {
+            if (str_contains($value, '//')) {
                 return (string)preg_replace_callback(
                     '!(?<=//)([^/:]+)!',
                     fn (array $match): string => strtolower(static::idnToAscii($match[1])),
