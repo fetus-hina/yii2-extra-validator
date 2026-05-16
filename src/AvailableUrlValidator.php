@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators;
 
+use Override;
 use Yii;
 use jp3cki\yii2\validators\internal\UserAgent;
 use yii\httpclient\Client as HttpClient;
@@ -31,6 +32,7 @@ class AvailableUrlValidator extends Validator
      * @inheritdoc
      * @return void
      */
+    #[Override]
     public function init()
     {
         parent::init();
@@ -47,6 +49,7 @@ class AvailableUrlValidator extends Validator
      * @inheritdoc
      * @return void
      */
+    #[Override]
     public function validateAttribute($model, $attribute)
     {
         if (!$this->isAbleToAccess($model->$attribute)) {
@@ -57,6 +60,7 @@ class AvailableUrlValidator extends Validator
     /**
      * @inheritdoc
      */
+    #[Override]
     protected function validateValue($value)
     {
         if (!$this->isAbleToAccess($value)) {

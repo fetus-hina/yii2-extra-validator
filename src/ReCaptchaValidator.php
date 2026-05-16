@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators;
 
+use Override;
 use Throwable;
 use Yii;
 use jp3cki\yii2\validators\internal\UserAgent;
@@ -32,6 +33,7 @@ class ReCaptchaValidator extends Validator
      * @inheritdoc
      * @return void
      */
+    #[Override]
     public function init()
     {
         parent::init();
@@ -48,6 +50,7 @@ class ReCaptchaValidator extends Validator
      * @inheritdoc
      * @return void
      */
+    #[Override]
     public function validateAttribute($model, $attribute)
     {
         $params = [

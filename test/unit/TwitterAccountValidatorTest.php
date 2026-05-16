@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators\test;
 
+use Override;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use Yii;
@@ -17,6 +18,7 @@ use function is_array;
 #[Group('sns')]
 class TwitterAccountValidatorTest extends TestCase
 {
+    #[Override]
     public function setUp(): void
     {
         parent::setUp();

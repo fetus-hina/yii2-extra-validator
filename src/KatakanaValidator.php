@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators;
 
+use Override;
 use Yii;
 
 /**
@@ -23,6 +24,7 @@ class KatakanaValidator extends internal\CharacterSequenceValidator
     /**
      * @inheritdoc
      */
+    #[Override]
     public function init()
     {
         parent::init();
@@ -31,6 +33,7 @@ class KatakanaValidator extends internal\CharacterSequenceValidator
         }
     }
 
+    #[Override]
     protected function makeRegex(): string
     {
         // Katakana range: U+30A0(゠:人名等に使用する区切り)..U+30FF(ヿ:コト)

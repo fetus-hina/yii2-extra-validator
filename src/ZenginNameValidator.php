@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators;
 
+use Override;
 use Yii;
 
 /**
@@ -27,6 +28,7 @@ class ZenginNameValidator extends internal\CharacterSequenceValidator
     /**
      * @inheritdoc
      */
+    #[Override]
     public function init()
     {
         parent::init();
@@ -35,6 +37,7 @@ class ZenginNameValidator extends internal\CharacterSequenceValidator
         }
     }
 
+    #[Override]
     protected function makeRegex(): string
     {
         return '/^[' .

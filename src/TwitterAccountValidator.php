@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators;
 
+use Override;
 use Yii;
 use yii\validators\Validator;
 
@@ -46,6 +47,7 @@ class TwitterAccountValidator extends Validator
      * @inheritdoc
      * @return void
      */
+    #[Override]
     public function init()
     {
         parent::init();
@@ -62,6 +64,7 @@ class TwitterAccountValidator extends Validator
      * @inheritdoc
      * @return void
      */
+    #[Override]
     public function validateAttribute($model, $attribute)
     {
         $ret = $this->validateValue($model->$attribute);
@@ -74,6 +77,7 @@ class TwitterAccountValidator extends Validator
      * @inheritdoc
      * @return array{string, array<string, mixed>}|null
      */
+    #[Override]
     protected function validateValue($value)
     {
         if (!is_string($value)) {

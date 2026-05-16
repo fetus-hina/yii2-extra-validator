@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators\internal;
 
+use Override;
 use Yii;
 use yii\base\BootstrapInterface;
 
@@ -19,6 +20,7 @@ final class BootstrapValidators implements BootstrapInterface
     /**
      * @return void
      */
+    #[Override]
     public function bootstrap($app)
     {
         Yii::setAlias('@jp3ckivalidatormessages', __DIR__ . '/../../messages');

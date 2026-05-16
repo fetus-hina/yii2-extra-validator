@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators\test;
 
+use Override;
 use PHPUnit\Framework\Attributes\Group;
 use Yii;
 use jp3cki\yii2\validators\ReCaptchaValidator as Target;
@@ -15,6 +16,7 @@ use function count;
 #[Group('recaptcha')]
 class ReCaptchaValidatorTest extends TestCase
 {
+    #[Override]
     public function setUp(): void
     {
         parent::setUp();

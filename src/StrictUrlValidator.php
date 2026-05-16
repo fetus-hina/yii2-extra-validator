@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators;
 
+use Override;
 use yii\validators\UrlValidator;
 
 /**
@@ -24,6 +25,7 @@ class StrictUrlValidator extends UrlValidator
      * @inheritdoc
      * @return void
      */
+    #[Override]
     public function init()
     {
         parent::init();

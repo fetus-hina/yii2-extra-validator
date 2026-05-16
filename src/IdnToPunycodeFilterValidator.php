@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators;
 
+use Override;
 use yii\validators\FilterValidator;
 
 use function idn_to_ascii;
@@ -29,6 +30,7 @@ class IdnToPunycodeFilterValidator extends FilterValidator
      * @inheritdoc
      * @return void
      */
+    #[Override]
     public function init()
     {
         $this->filter = function (string $value): string {

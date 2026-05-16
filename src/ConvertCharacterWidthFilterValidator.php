@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators;
 
+use Override;
 use jp3cki\yii2\validators\internal\AppHelper;
 use yii\validators\FilterValidator;
 
@@ -33,6 +34,7 @@ class ConvertCharacterWidthFilterValidator extends FilterValidator
      * @inheritdoc
      * @return void
      */
+    #[Override]
     public function init()
     {
         if ($this->charset === null) {

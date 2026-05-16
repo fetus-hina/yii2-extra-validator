@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators\internal;
 
+use Override;
 use yii\validators\Validator;
 
 use function is_string;
@@ -32,6 +33,7 @@ abstract class CharacterSequenceValidator extends Validator
      * @inheritdoc
      * @return void
      */
+    #[Override]
     public function init()
     {
         parent::init();
@@ -44,6 +46,7 @@ abstract class CharacterSequenceValidator extends Validator
      * @inheritdoc
      * @return void
      */
+    #[Override]
     public function validateAttribute($model, $attribute)
     {
         if (!$this->isValid($model->$attribute)) {
@@ -55,6 +58,7 @@ abstract class CharacterSequenceValidator extends Validator
      * @inheritdoc
      * @return array{string, array<string, mixed>}|null
      */
+    #[Override]
     protected function validateValue($value)
     {
         if (!$this->isValid($value)) {
