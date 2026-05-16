@@ -6,6 +6,7 @@ namespace jp3cki\yii2\validators\testsrc;
 
 use Yii;
 use jp3cki\yii2\validators\internal\BootstrapValidators;
+use yii\base\NotSupportedException;
 use yii\helpers\ArrayHelper;
 
 use function file_exists;
