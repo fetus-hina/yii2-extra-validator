@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators\internal;
 
-use Yii;
 use yii\validators\Validator;
 
 use function is_string;
@@ -37,7 +36,7 @@ abstract class CharacterSequenceValidator extends Validator
     {
         parent::init();
         if ($this->charset === null) {
-            $this->charset = Yii::$app->charset;
+            $this->charset = AppHelper::app()->charset;
         }
     }
 
@@ -71,10 +70,12 @@ abstract class CharacterSequenceValidator extends Validator
             return false;
         }
 
-        return (bool)preg_match(
-            $this->makeRegex(),
-            mb_convert_encoding($value, 'UTF-8', $this->charset),
-        );
+        $value = mb_convert_encoding($value, 'UTF-8', $this->charset);
+        if (!is_string($value)) {
+            return false;
+        }
+
+        return (bool)preg_match($this->makeRegex(), $value);
     }
 
     abstract protected function makeRegex(): string;

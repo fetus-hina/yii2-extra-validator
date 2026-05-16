@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace jp3cki\yii2\validators;
 
-use Yii;
+use jp3cki\yii2\validators\internal\AppHelper;
 use yii\validators\FilterValidator;
 
 use function assert;
@@ -37,7 +37,7 @@ class ZenginNameFilterValidator extends FilterValidator
     public function init()
     {
         if ($this->charset === null) {
-            $this->charset = Yii::$app->charset;
+            $this->charset = AppHelper::app()->charset;
         }
 
         $this->filter = function ($value) {

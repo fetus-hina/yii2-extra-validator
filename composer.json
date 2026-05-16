@@ -11,19 +11,19 @@
         }
     ],
     "require": {
-        "php": ">= 8.0",
+        "php": ">= 8.2",
         "ext-intl": "*",
         "ext-mbstring": "*",
         "ext-pcre": "*",
         "jp3cki/mb_str_replace": "^4.0.2",
-        "yiisoft/yii2": "^2.0.50",
-        "yiisoft/yii2-httpclient": "^2.0.15"
+        "yiisoft/yii2": "^2.0.55",
+        "yiisoft/yii2-httpclient": "^2.0.16"
     },
     "require-dev": {
-        "jp3cki/coding-standard": ">=0.1.4",
-        "phpunit/phpunit": ">=9.6.19",
+        "jp3cki/coding-standard": "^2.0.0",
+        "phpunit/phpunit": "^10.5.63",
         "proget-hq/phpstan-yii2": "~0.8.0",
-        "squizlabs/php_codesniffer": "^3.10.1"
+        "squizlabs/php_codesniffer": "^3.13.5"
     },
     "autoload": {
         "psr-4": {
@@ -40,7 +40,7 @@
             "yiisoft/yii2-composer": true
         },
         "platform": {
-            "php": "8.0.28"
+            "php": "8.2.31"
         }
     },
     "repositories": [
