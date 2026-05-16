@@ -3,15 +3,16 @@ all: test
 
 .PHONY: test
 test: vendor check-style
-	vendor/bin/phpunit --group=japanese
-	vendor/bin/phpunit --group=recaptcha
-	vendor/bin/phpunit --group=sns
-	vendor/bin/phpunit --group=url
-	vendor/bin/phpunit --group=zengin
+	php -d memory_limit=512M vendor/bin/phpunit
 
 .PHONY: check-style
 check-style: vendor
-	find . \( -type d \( -name '.git' -or -name 'vendor' -or -name 'runtime' \) -prune \) -or \( -type f -name '*.php' -print \) | xargs -n 1 php -l
+	@xargs_opts=; \
+		if [ "$$(php -r 'echo PHP_VERSION_ID;')" -lt 80300 ]; then \
+			xargs_opts='-n 1'; \
+		fi; \
+		find . \( -type d \( -name '.git' -or -name 'vendor' -or -name 'runtime' \) -prune \) -or \( -type f -name '*.php' -print \) \
+			| xargs $$xargs_opts php -l
 	vendor/bin/phpcs src test
 	vendor/bin/phpstan --memory-limit=1G
 
