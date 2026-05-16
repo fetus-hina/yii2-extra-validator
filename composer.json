@@ -1,9 +1,15 @@
 {
     "name": "jp3cki/yii2-extra-validator",
-    "type": "yii2-extension",
     "description": "Validators for Yii2",
-    "keywords": ["yii2", "extension", "validator", "recaptcha", "twitter"],
     "license": "MIT",
+    "type": "yii2-extension",
+    "keywords": [
+        "yii2",
+        "extension",
+        "validator",
+        "recaptcha",
+        "twitter"
+    ],
     "authors": [
         {
             "name": "AIZAWA Hina",
@@ -16,9 +22,9 @@
         "ext-mbstring": "*",
         "ext-pcre": "*",
         "jp3cki/mb_str_replace": "^4.0.2",
+        "symfony/polyfill-php83": "^1.37",
         "yiisoft/yii2": "^2.0.55",
-        "yiisoft/yii2-httpclient": "^2.0.16",
-        "symfony/polyfill-php83": "^1.37"
+        "yiisoft/yii2-httpclient": "^2.0.16"
     },
     "require-dev": {
         "jp3cki/coding-standard": "^2.0.0",
@@ -26,14 +32,17 @@
         "proget-hq/phpstan-yii2": "~0.8.0",
         "squizlabs/php_codesniffer": "^3.13.5"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "jp3cki\\yii2\\validators\\": "src",
             "jp3cki\\yii2\\validators\\testsrc\\": "test/src"
         }
-    },
-    "extra": {
-        "bootstrap": "jp3cki\\yii2\\validators\\internal\\BootstrapValidators"
     },
     "config": {
         "allow-plugins": {
@@ -42,12 +51,10 @@
         },
         "platform": {
             "php": "8.2.31"
-        }
+        },
+        "sort-packages": true
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://asset-packagist.org"
-        }
-    ]
+    "extra": {
+        "bootstrap": "jp3cki\\yii2\\validators\\internal\\BootstrapValidators"
+    }
 }
