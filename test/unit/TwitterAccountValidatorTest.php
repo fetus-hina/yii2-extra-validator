@@ -115,7 +115,7 @@ class TwitterAccountValidatorTest extends TestCase
         }
     }
 
-    public function screenNamesProvider()
+    public static function screenNamesProvider()
     {
         return [
             [false, ''],

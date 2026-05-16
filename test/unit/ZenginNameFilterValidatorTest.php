@@ -36,7 +36,7 @@ class ZenginNameFilterValidatorTest extends TestCase
         $this->assertEquals($expected, $model->value);
     }
 
-    public function dataProvider()
+    public static function dataProvider()
     {
         $set = [
             ['ｱｲｻﾞﾜ ﾋﾅ', 'アイザワ　ヒナ', null],

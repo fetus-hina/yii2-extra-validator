@@ -33,7 +33,7 @@ class IdnToPunycodeFilterValidatorTest extends TestCase
         $this->assertEquals($ascii, $o->value);
     }
 
-    public function dataProvider()
+    public static function dataProvider()
     {
         $set = [
             ['example.com', 'example.com'],

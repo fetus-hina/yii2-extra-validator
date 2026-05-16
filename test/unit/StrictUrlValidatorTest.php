@@ -29,7 +29,7 @@ class StrictUrlValidatorTest extends TestCase
         $this->assertEquals($expect, $o->validate($url));
     }
 
-    public function dataProvider()
+    public static function dataProvider()
     {
         return [
             [true, false, 'http://example.com/'], // basic

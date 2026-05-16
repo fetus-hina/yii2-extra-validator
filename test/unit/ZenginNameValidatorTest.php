@@ -47,7 +47,7 @@ class ZenginNameValidatorTest extends TestCase
         $this->assertEquals($expected, !$model->hasErrors());
     }
 
-    public function dataProvider()
+    public static function dataProvider()
     {
         $set = [
             [true, 'ｱｲｻﾞﾜ ﾋﾅ', null],

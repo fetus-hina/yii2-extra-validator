@@ -34,7 +34,7 @@ class ConvertCharacterWidthFilterValidatorTest extends TestCase
         $this->assertEquals($expected, $model->value);
     }
 
-    public function dataProvider()
+    public static function dataProvider()
     {
         $set = [
             [' ', '　', null],
