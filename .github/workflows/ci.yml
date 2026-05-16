@@ -1,6 +1,8 @@
 name: CI
 'on':
   - push
+env:
+  PHP_TOOLING_VERSION: '8.5'
 jobs:
   phpSyntaxCheck:
     name: 'Syntax Check (PHP ${{ matrix.php.version }})'
@@ -8,21 +10,24 @@ jobs:
       matrix:
         php:
           -
-            version: '8.0'
-            experimental: false
-          -
-            version: '8.1'
-            experimental: false
-          -
             version: '8.2'
             experimental: false
           -
             version: '8.3'
+            experimental: false
+          -
+            version: '8.4'
+            experimental: false
+          -
+            version: '8.5'
+            experimental: false
+          -
+            version: '8.6'
             experimental: true
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       -
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       -
         name: 'Set up PHP ${{ matrix.php.version }}'
         uses: shivammathur/setup-php@v2
@@ -34,22 +39,26 @@ jobs:
         env:
           LANG: C
         run: |
+          xargs_opts=
+          if [ "$(php -r 'echo PHP_VERSION_ID;')" -lt 80300 ]; then
+            xargs_opts='-n 1'
+          fi
           find . \( -type d \( -name '.git' -or -name 'vendor' -or -name 'node_modules' -or -name 'runtime' \) -prune \) -or \( -type f -name '*.php' -print \) \
             | sort \
-            | xargs -n 1 php -l
+            | xargs $xargs_opts php -l
   phpcs:
     name: PHPCS
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     needs:
       - phpSyntaxCheck
     steps:
       -
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       -
-        name: 'Set up PHP ${{ matrix.php.version }}'
+        name: 'Set up PHP ${{ env.PHP_TOOLING_VERSION }}'
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: '${{ env.PHP_TOOLING_VERSION }}'
       -
         name: 'Install Composer dependencies'
         run: 'composer install'
@@ -58,17 +67,17 @@ jobs:
         run: ./vendor/bin/phpcs
   phpstan:
     name: PHPStan
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     needs:
       - phpSyntaxCheck
     steps:
       -
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       -
-        name: 'Set up PHP 8.0'
+        name: 'Set up PHP ${{ env.PHP_TOOLING_VERSION }}'
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: '${{ env.PHP_TOOLING_VERSION }}'
       -
         name: 'Install Composer dependencies'
         run: 'composer install'
@@ -83,21 +92,24 @@ jobs:
       matrix:
         php:
           -
-            version: '8.0'
-            experimental: false
-          -
-            version: '8.1'
-            experimental: false
-          -
             version: '8.2'
             experimental: false
           -
             version: '8.3'
+            experimental: false
+          -
+            version: '8.4'
+            experimental: false
+          -
+            version: '8.5'
+            experimental: false
+          -
+            version: '8.6'
             experimental: true
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       -
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       -
         name: 'Set up PHP ${{ matrix.php.version }}'
         uses: shivammathur/setup-php@v2
@@ -109,4 +121,4 @@ jobs:
       -
         name: 'Run unit test'
         continue-on-error: '${{ matrix.php.experimental }}'
-        run: 'vendor/bin/phpunit --group=japanese,recaptcha,sns,url,zengin'
+        run: 'vendor/bin/phpunit'
