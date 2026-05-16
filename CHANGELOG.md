@@ -106,3 +106,5 @@ CHANGELOG
 
 * *ALMOST* it has backward compatibility.
 * Minimum requirements updated to PHP 8.2
+* Minimum requirements updated to Yii2 2.0.55
+* Now depends on `symfony/polyfill-php83` for the `#[Override]` attribute
