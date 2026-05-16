@@ -16,6 +16,7 @@ use jp3cki\yii2\validators\internal\AppHelper;
 use yii\validators\FilterValidator;
 
 use function assert;
+use function is_scalar;
 use function is_string;
 use function mb_convert_encoding;
 use function mb_convert_kana;
@@ -43,8 +44,10 @@ class ZenginNameFilterValidator extends FilterValidator
         }
 
         $this->filter = function ($value) {
-            $value = (string)$value;
-            $utf8 = (string)mb_convert_encoding($value, 'UTF-8', $this->charset ?? 'UTF-8');
+            if (!is_scalar($value)) {
+                return $value;
+            }
+            $utf8 = (string)mb_convert_encoding((string)$value, 'UTF-8', $this->charset ?? 'UTF-8');
             $utf8 = (string)mb_convert_kana($utf8, 'askh', 'UTF-8');
             $utf8 = (string)strtoupper($utf8);
             $utf8 = mb_str_replace(

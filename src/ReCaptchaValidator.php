@@ -18,6 +18,7 @@ use yii\httpclient\Client as HttpClient;
 use yii\validators\Validator;
 
 use function is_array;
+use function is_scalar;
 
 /**
  * Validates ReCAPTCHA 2.0 input
@@ -53,9 +54,10 @@ class ReCaptchaValidator extends Validator
     #[Override]
     public function validateAttribute($model, $attribute)
     {
+        $response = $model->$attribute;
         $params = [
             'secret' => (string)$this->secret,
-            'response' => (string)$model->$attribute,
+            'response' => is_scalar($response) ? (string)$response : '',
         ];
         if ($this->remoteIp) {
             $params['remoteip'] = (string)$this->remoteIp;

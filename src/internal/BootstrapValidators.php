@@ -13,18 +13,20 @@ namespace jp3cki\yii2\validators\internal;
 
 use Override;
 use Yii;
+use yii\base\Application;
 use yii\base\BootstrapInterface;
 
 final class BootstrapValidators implements BootstrapInterface
 {
     /**
+     * @param Application $app
      * @return void
      */
     #[Override]
     public function bootstrap($app)
     {
         Yii::setAlias('@jp3ckivalidatormessages', __DIR__ . '/../../messages');
-        $i18n = $app->i18n;
+        $i18n = AppHelper::app()->getI18n();
         if (!isset($i18n->translations['jp3ckivalidator'])) {
             $i18n->translations['jp3ckivalidator'] = [
                 'class' => 'yii\i18n\PhpMessageSource',

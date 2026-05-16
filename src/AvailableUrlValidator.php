@@ -64,7 +64,7 @@ class AvailableUrlValidator extends Validator
     protected function validateValue($value)
     {
         if (!$this->isAbleToAccess($value)) {
-            return [$this->message, []];
+            return [(string)$this->message, []];
         }
 
         return null;

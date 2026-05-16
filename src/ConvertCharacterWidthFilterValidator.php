@@ -15,6 +15,7 @@ use Override;
 use jp3cki\yii2\validators\internal\AppHelper;
 use yii\validators\FilterValidator;
 
+use function is_scalar;
 use function mb_convert_kana;
 
 /**
@@ -40,7 +41,12 @@ class ConvertCharacterWidthFilterValidator extends FilterValidator
         if ($this->charset === null) {
             $this->charset = AppHelper::app()->charset;
         }
-        $this->filter = fn ($value) => mb_convert_kana($value, $this->option, $this->charset);
+        $this->filter = function ($value) {
+            if (!is_scalar($value)) {
+                return $value;
+            }
+            return mb_convert_kana((string)$value, $this->option, $this->charset);
+        };
         parent::init();
     }
 }
